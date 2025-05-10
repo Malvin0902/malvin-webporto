@@ -10,8 +10,9 @@ interface IntroSectionProps {
 
 const profile = {
   name: "Your Name",
-  title: "junior full stack developer",
-  image: "/profile-photo.jpg",
+  title: "Designer & Developer",
+  image: "/profile.jpg", // Place your image in the public folder
+  bio: "I'm passionate about creating meaningful digital experiences that combine editorial design principles with modern web technologies.",
 }
 
 export default function IntroSection({ setActiveSection }: IntroSectionProps) {
@@ -28,7 +29,7 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
 
   const initialMessages = [
     "hi",
-    "i'm a junior full stack developer.",
+    "i'm a designer & developer.",
     "would you like to know more about me?",
   ]
 
