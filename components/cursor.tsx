@@ -13,7 +13,16 @@ export default function Cursor() {
   useEffect(() => {
     // Check if we're on a mobile device
     const checkMobile = () => {
-      setIsMobile(window.matchMedia("(max-width: 768px)").matches)
+      const isMobileDevice = window.matchMedia("(max-width: 768px)").matches || 
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      setIsMobile(isMobileDevice)
+      
+      // Add cursor pointer class to body when on mobile
+      if (isMobileDevice) {
+        document.body.classList.add('mobile-device')
+      } else {
+        document.body.classList.remove('mobile-device')
+      }
     }
 
     // Initial check
@@ -22,7 +31,10 @@ export default function Cursor() {
     // Add listener for screen size changes
     window.addEventListener("resize", checkMobile)
 
-    return () => window.removeEventListener("resize", checkMobile)
+    return () => {
+      window.removeEventListener("resize", checkMobile)
+      document.body.classList.remove('mobile-device')
+    }
   }, [])
 
   useEffect(() => {
@@ -84,23 +96,17 @@ export default function Cursor() {
         x: position.x,
         y: position.y,
         scale: isPointer ? 1.2 : isClicking ? 0.8 : 1,
-        opacity: isVisible ? 0.8 : 0,
-        backgroundColor: isClicking ? "rgba(255, 255, 255, 0.2)" : "transparent",
+        opacity: isVisible ? 1 : 0,
+        borderColor: isPointer ? "rgba(255, 255, 255, 0.8)" : "rgba(255, 255, 255, 0.4)",
+        width: isPointer ? "30px" : "15px",
+        height: isPointer ? "30px" : "15px",
       }}
       transition={{
         type: "spring",
-        damping: 30,
-        stiffness: 200,
-        mass: 0.5,
+        damping: 20,
+        stiffness: 400,
+        mass: 0.2,
       }}
-    >
-      <motion.div
-        className="cursor-dot"
-        animate={{
-          scale: isClicking ? 1.5 : 1,
-        }}
-        transition={{ duration: 0.2 }}
-      />
-    </motion.div>
+    />
   )
 }

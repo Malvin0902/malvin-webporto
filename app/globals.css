@@ -93,24 +93,15 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 24px;
-  height: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  width: 15px;
+  height: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 50%;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s, background-color 0.2s;
-}
-
-.cursor-dot {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 4px;
-  height: 4px;
-  background-color: white;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
+  transition: border-color 0.2s ease;
+  mix-blend-mode: difference;
+  backdrop-filter: invert(1);
 }
 
 .interactive-element {
@@ -122,14 +113,18 @@ body {
   opacity: 0.7;
 }
 
-/* Hide custom cursor on mobile */
+/* Mobile device handling */
+.mobile-device .interactive-element {
+  cursor: pointer !important;
+}
+
 @media (max-width: 768px) {
   .cursor {
-    display: none;
+    display: none !important;
   }
 
   .interactive-element {
-    cursor: pointer;
+    cursor: pointer !important;
   }
 }
 
