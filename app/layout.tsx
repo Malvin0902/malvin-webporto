@@ -10,9 +10,9 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Malvin Muhammad Raqin - Designer & Developer Portfolio",
-  description: "Portfolio website of Malvin Muhammad Raqin (Malvin Raqin), a designer and developer specializing in creating minimal, text-based digital experiences. Explore my work in design and web development.",
-  keywords: "Malvin Muhammad Raqin, Malvin Raqin, designer, developer, portfolio, web development, UI/UX design, minimalist design",
+  title: "Malvin Muhammad Raqin - Junior Full Stack Developer Portfolio",
+  description: "Portfolio website of Malvin Muhammad Raqin (Malvin Raqin), a junior full stack developer specializing in creating minimal, text-based digital experiences. Explore my work in web development.",
+  keywords: "Malvin Muhammad Raqin, Malvin Raqin, junior full stack developer, portfolio, web development, UI/UX design, minimalist design",
   authors: [{ name: "Malvin Muhammad Raqin" }],
   creator: "Malvin Muhammad Raqin",
   icons: {
@@ -26,15 +26,15 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Malvin Muhammad Raqin - Designer & Developer Portfolio",
-    description: "Portfolio website of Malvin Muhammad Raqin (Malvin Raqin), a designer and developer specializing in creating minimal, text-based digital experiences.",
+    title: "Malvin Muhammad Raqin - Junior Full Stack Developer Portfolio",
+    description: "Portfolio website of Malvin Muhammad Raqin (Malvin Raqin), a junior full stack developer specializing in creating minimal, text-based digital experiences.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Malvin Muhammad Raqin - Designer & Developer Portfolio",
-    description: "Portfolio website of Malvin Muhammad Raqin (Malvin Raqin), a designer and developer specializing in creating minimal, text-based digital experiences.",
+    title: "Malvin Muhammad Raqin - Junior Full Stack Developer Portfolio",
+    description: "Portfolio website of Malvin Muhammad Raqin (Malvin Raqin), a junior full stack developer specializing in creating minimal, text-based digital experiences.",
   },
   robots: {
     index: true,

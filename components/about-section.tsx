@@ -14,19 +14,19 @@ export default function AboutSection({ setActiveSection }: AboutSectionProps) {
 
   const experiences = [
     {
-      role: "Senior Designer & Developer",
+      role: "Junior Full Stack Developer",
       company: "Digital Studio",
       period: "2021 - Present",
-      description: "Leading design and development for editorial and experimental web projects.",
+      description: "Developing full stack applications with focus on modern web technologies and best practices.",
     },
     {
-      role: "UI/UX Designer",
+      role: "Junior Full Stack Developer",
       company: "Creative Agency",
       period: "2018 - 2021",
-      description: "Designed user interfaces and experiences for various clients across different industries.",
+      description: "Built and maintained web applications using modern JavaScript frameworks and backend technologies.",
     },
     {
-      role: "Frontend Developer",
+      role: "Junior Full Stack Developer",
       company: "Tech Startup",
       period: "2016 - 2018",
       description: "Developed responsive and interactive web applications using modern JavaScript frameworks.",
@@ -93,12 +93,8 @@ export default function AboutSection({ setActiveSection }: AboutSectionProps) {
           </div>
           <div className="flex-1">
             <p className="text-lg mb-6">
-              I'm a designer and developer passionate about creating meaningful digital experiences. My work combines minimalist aesthetics with modern web technologies.
+              I'm a junior full stack developer passionate about creating meaningful digital experiences. My work combines modern web technologies with clean, efficient code.
             </p>
-            <p className="opacity-80 mb-8">
-              With expertise in both design and development, I focus on creating interfaces that are both beautiful and functional, drawing inspiration from print design while embracing digital innovation.
-            </p>
-
             <div>
               <h3 className="text-lg mb-4">Connect</h3>
               <div className="flex space-x-4">

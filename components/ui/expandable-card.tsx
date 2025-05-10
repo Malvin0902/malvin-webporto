@@ -223,6 +223,28 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
                 →
               </span>
             </motion.div>
+
+            {/* Click me indicator */}
+            <motion.div
+              className="absolute bottom-4 right-4 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 0 }}
+              whileHover={{ y: 0, opacity: 1 }}
+            >
+              <motion.span
+                className="inline-block"
+                animate={{
+                  y: [0, -4, 0],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                Click me
+              </motion.span>
+            </motion.div>
           </motion.div>
         ))}
       </ul>
