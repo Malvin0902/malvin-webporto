@@ -25,7 +25,6 @@ export const metadata: Metadata = {
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
-  manifest: '/site.webmanifest',
   openGraph: {
     title: "Malvin Muhammad Raqin - Designer & Developer Portfolio",
     description: "Portfolio website of Malvin Muhammad Raqin (Malvin Raqin), a designer and developer specializing in creating minimal, text-based digital experiences.",
