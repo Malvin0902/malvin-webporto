@@ -15,6 +15,17 @@ export const metadata: Metadata = {
   keywords: "Malvin Muhammad Raqin, Malvin Raqin, designer, developer, portfolio, web development, UI/UX design, minimalist design",
   authors: [{ name: "Malvin Muhammad Raqin" }],
   creator: "Malvin Muhammad Raqin",
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  manifest: '/site.webmanifest',
   openGraph: {
     title: "Malvin Muhammad Raqin - Designer & Developer Portfolio",
     description: "Portfolio website of Malvin Muhammad Raqin (Malvin Raqin), a designer and developer specializing in creating minimal, text-based digital experiences.",

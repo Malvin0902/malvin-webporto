@@ -30,7 +30,6 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
   const initialMessages = [
     "hi",
     "i'm a designer & developer.",
-    "my passion is creating minimal, text-based experiences at the intersection of design and technology.",
     "would you like to know more about me?",
   ]
 
@@ -41,14 +40,14 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
   ]
 
   const greetings = [
-    "hi.",
-    "bonjour.",
-    "hola.",
-    "こんにちは.",
-    "你好.",
-    "안녕하세요.",
-    "ciao.",
-    "hallo.",
+    "hi",
+    "bonjour",
+    "hola",
+    "こんにちは",
+    "你好",
+    "안녕하세요",
+    "ciao",
+    "hallo",
   ]
 
   useEffect(() => {
