@@ -10,9 +10,8 @@ interface IntroSectionProps {
 
 const profile = {
   name: "Your Name",
-  title: "Designer & Developer",
-  image: "/profile.jpg", // Place your image in the public folder
-  bio: "I'm passionate about creating meaningful digital experiences that combine editorial design principles with modern web technologies.",
+  title: "junior full stack developer",
+  image: "/profile-photo.jpg",
 }
 
 export default function IntroSection({ setActiveSection }: IntroSectionProps) {
@@ -29,7 +28,7 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
 
   const initialMessages = [
     "hi",
-    "i'm a designer & developer.",
+    "i'm a junior full stack developer.",
     "would you like to know more about me?",
   ]
 
@@ -135,15 +134,12 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0 },
     visible: { 
-      opacity: 1, 
-      y: 0, 
+      opacity: 1,
       transition: { 
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1],
-        type: "spring",
-        stiffness: 100
+        duration: 0.3,
+        ease: "easeOut"
       } 
     },
   }
@@ -154,6 +150,12 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
       animate="visible"
       variants={containerVariants}
       className="min-h-[80vh] flex flex-col justify-center max-w-2xl mx-auto"
+      style={{ 
+        transform: "translateZ(0)",
+        backfaceVisibility: "visible",
+        perspective: "none",
+        willChange: "auto"
+      }}
     >
       {!showChat ? (
         <>
@@ -161,29 +163,19 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
             <h1 className="text-5xl mb-8 leading-tight">
               <motion.span
                 className="text-gradient"
-                animate={{ 
-                  opacity: isGreetingAnimating ? 0 : 1,
-                  scale: isGreetingAnimating ? 0.95 : 1
-                }}
-                transition={{ 
-                  duration: 0.4,
-                  ease: [0.16, 1, 0.3, 1]
-                }}
+                animate={{ opacity: isGreetingAnimating ? 0 : 1 }}
+                transition={{ duration: 0.2 }}
               >
                 {greeting}
               </motion.span>
             </h1>
             <motion.p 
               className="text-lg opacity-80 leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ 
-                delay: 0.3,
-                duration: 0.8,
-                ease: [0.16, 1, 0.3, 1]
-              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
             >
-              i'm a designer & developer.
+              i'm a junior full stack developer.
             </motion.p>
           </motion.div>
 
@@ -191,17 +183,10 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
             <motion.button
               className="button interactive-element self-start"
               onClick={handleStartChat}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.6,
-                ease: [0.16, 1, 0.3, 1]
-              }}
-              whileHover={{ 
-                y: -3,
-                scale: 1.02,
-                transition: { duration: 0.2 }
-              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              whileHover={{ opacity: 0.8 }}
               whileTap={{ scale: 0.98 }}
             >
               →say hi
@@ -213,18 +198,14 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
           {conversation.map((message, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ 
-                duration: 0.4,
-                ease: [0.16, 1, 0.3, 1],
-                delay: index * 0.1
-              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.2 }}
               className={`${message.startsWith("you:") ? "text-right" : ""}`}
             >
               <motion.span 
                 className={`inline-block p-3 ${message.startsWith("you:") ? "bg-gray-900" : ""}`}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ opacity: 0.8 }}
                 transition={{ duration: 0.2 }}
               >
                 {message}
@@ -237,7 +218,7 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
               initial={{ opacity: 0 }} 
               animate={{ opacity: 1 }} 
               className="inline-block p-3"
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
             >
               <span className="typing-effect"></span>
             </motion.div>
@@ -245,9 +226,9 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
 
           {currentIndex === initialMessages.length && !isTyping && (
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
               className="mt-8"
             >
               <div className="space-y-3">
@@ -256,18 +237,10 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
                     key={index}
                     className="interactive-element block text-left p-3 w-full hover:bg-gray-900 transition-colors"
                     onClick={option.action}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ 
-                      duration: 0.4,
-                      delay: 0.1 * index,
-                      ease: [0.16, 1, 0.3, 1]
-                    }}
-                    whileHover={{ 
-                      x: 5,
-                      scale: 1.02,
-                      transition: { duration: 0.2 }
-                    }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.2, delay: 0.1 * index }}
+                    whileHover={{ opacity: 0.8 }}
                   >
                     {option.text}
                   </motion.button>
@@ -275,9 +248,9 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
               </div>
 
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
                 className="mt-6"
               >
                 <p className="text-gray-500 text-xs mb-2">or type your own response:</p>
@@ -288,16 +261,13 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
                     onChange={(e) => setUserResponse(e.target.value)}
                     className="flex-1 bg-transparent border border-gray-800 p-2 text-sm focus:outline-none focus:border-gray-600 interactive-element"
                     placeholder="type your message..."
-                    whileFocus={{ scale: 1.01 }}
+                    whileFocus={{ opacity: 0.8 }}
                     transition={{ duration: 0.2 }}
                   />
                   <motion.button
                     type="submit"
                     className="bg-gray-900 px-4 text-sm hover:bg-gray-800 transition-colors interactive-element"
-                    whileHover={{ 
-                      backgroundColor: "rgba(40, 40, 40, 1)",
-                      scale: 1.02
-                    }}
+                    whileHover={{ opacity: 0.8 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     send

@@ -74,10 +74,16 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
                 layoutId={`card-${active.title}-${id}`}
                 ref={ref}
                 className="w-full max-w-[600px] my-8 flex flex-col bg-[rgba(20,20,20,0.95)] border border-gray-800/50 sm:rounded-xl overflow-hidden backdrop-blur-sm shadow-2xl"
-                initial={{ opacity: 0.5, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                style={{ 
+                  transform: "translateZ(0)",
+                  backfaceVisibility: "visible",
+                  perspective: "none",
+                  willChange: "auto"
+                }}
               >
                 <motion.div 
                   layoutId={`image-${active.title}-${id}`}
@@ -87,7 +93,7 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
                 </motion.div>
 
-                <div className="p-8">
+                <div className="p-6">
                   <motion.h3 
                     layoutId={`title-${active.title}-${id}`} 
                     className="text-2xl font-semibold mb-4"
@@ -104,9 +110,9 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
 
                   <div className="overflow-y-auto max-h-[40vh] pr-4 custom-scrollbar">
                     <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.2 }}
                       className="text-base opacity-80 space-y-6 leading-relaxed"
                     >
                       {typeof active.content === "function" ? active.content() : active.content}
@@ -115,9 +121,9 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
 
                   {active.tags && active.tags.length > 0 && (
                     <motion.div 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.2 }}
                       className="flex flex-wrap gap-2 mt-8"
                     >
                       {active.tags.map((tag, index) => (
@@ -133,9 +139,9 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
 
                   {active.ctaLink && (
                     <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.2 }}
                       className="mt-8"
                     >
                       <a
@@ -145,7 +151,7 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
                         className="inline-flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
                       >
                         <span>{active.ctaText || 'View Project'}</span>
-                        <span className="ml-2 inline-block transform group-hover:translate-x-1 transition-transform duration-300">
+                        <span className="ml-2 inline-block transition-transform duration-200">
                           →
                         </span>
                       </a>
@@ -160,91 +166,62 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
       <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
         {cards.map((card, index) => (
           <motion.div
-            layoutId={`card-${card.title}-${id}`}
-            key={`card-${card.title}-${id}`}
+            key={index}
+            className="project-card group relative overflow-hidden"
             onClick={() => setActive(card)}
-            className="project-card p-6 interactive-element group cursor-pointer relative overflow-hidden"
-            whileHover={{ 
-              y: -8,
-              transition: { duration: 0.3, ease: "easeOut" }
-            }}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                setActive(card)
-              }
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2, delay: index * 0.1 }}
+            whileHover={{ opacity: 0.9 }}
+            style={{ 
+              transform: "translateZ(0)",
+              backfaceVisibility: "visible",
+              perspective: "none",
+              willChange: "auto"
             }}
           >
-            <motion.div 
-              layoutId={`image-${card.title}-${id}`} 
-              className="mb-6 text-3xl relative"
-            >
-              {card.icon}
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </motion.div>
-            <motion.h3 
-              layoutId={`title-${card.title}-${id}`} 
-              className="text-xl font-semibold mb-3"
-            >
-              {card.title}
-            </motion.h3>
-            <motion.p 
-              layoutId={`description-${card.description}-${id}`} 
-              className="text-sm opacity-70 mb-4 line-clamp-2"
-            >
-              {card.description}
-            </motion.p>
-            <div className="flex flex-wrap">
-              {card.tags &&
-                card.tags.map((tag, i) => (
-                  <motion.span
-                    key={i}
-                    className="skill-tag mr-2 mb-2 bg-white/5 hover:bg-white/10 transition-colors"
-                    whileHover={{
-                      backgroundColor: "rgba(255, 255, 255, 0.1)",
-                      borderColor: "rgba(255, 255, 255, 0.5)",
-                      transition: { duration: 0.2 },
-                    }}
-                  >
-                    {tag}
-                  </motion.span>
-                ))}
-            </div>
+            <div className="p-6">
+              <div className="mb-4 text-3xl">{card.icon}</div>
+              <h3 className="text-xl mb-2">{card.title}</h3>
+              <p className="text-sm opacity-70 mb-4">{card.description}</p>
 
-            <motion.div 
-              className="mt-4 text-sm opacity-0 group-hover:opacity-70 transition-all duration-300 flex items-center"
-              initial={false}
-              animate={{ opacity: 0 }}
-              whileHover={{ opacity: 1 }}
-            >
-              <span>View details</span>
-              <span className="ml-1 inline-block transform group-hover:translate-x-1 transition-transform duration-300">
-                →
-              </span>
-            </motion.div>
+              <div className="flex flex-wrap">
+                {card.tags &&
+                  card.tags.map((tag, i) => (
+                    <motion.span
+                      key={i}
+                      className="skill-tag mr-2 mb-2 bg-white/5 hover:bg-white/10 transition-colors"
+                      whileHover={{ opacity: 0.8 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {tag}
+                    </motion.span>
+                  ))}
+              </div>
 
-            {/* Click me indicator */}
-            <motion.div
-              className="absolute bottom-4 right-4 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              initial={{ y: 10, opacity: 0 }}
-              animate={{ y: 0, opacity: 0 }}
-              whileHover={{ y: 0, opacity: 1 }}
-            >
-              <motion.span
-                className="inline-block"
-                animate={{
-                  y: [0, -4, 0],
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
+              <motion.div 
+                className="mt-4 text-sm opacity-0 group-hover:opacity-70 transition-all duration-200 flex items-center"
+                initial={false}
+                animate={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
               >
-                Click me
-              </motion.span>
-            </motion.div>
+                <span>View details</span>
+                <span className="ml-1 inline-block transition-transform duration-200">
+                  →
+                </span>
+              </motion.div>
+
+              <motion.div
+                className="absolute bottom-4 right-4 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+              >
+                <span className="inline-block">
+                  Click me
+                </span>
+              </motion.div>
+            </div>
           </motion.div>
         ))}
       </ul>

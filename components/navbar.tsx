@@ -43,7 +43,19 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 1.8 }}
+      transition={{ 
+        duration: 0.6, 
+        delay: 1.8,
+        type: "spring",
+        stiffness: 100,
+        damping: 20
+      }}
+      style={{ 
+        transform: "translate3d(0, 0, 0)",
+        backfaceVisibility: "hidden",
+        perspective: "1000px",
+        willChange: "transform, opacity"
+      }}
       className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
         scrolled ? "py-3 bg-black/90 backdrop-blur-sm" : "py-6"
       }`}
@@ -52,6 +64,13 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
         <motion.div
           className="text-sm interactive-element"
           whileHover={{ opacity: 0.7 }}
+          transition={{ duration: 0.2 }}
+          style={{ 
+            transform: "translate3d(0, 0, 0)",
+            backfaceVisibility: "hidden",
+            perspective: "1000px",
+            willChange: "opacity"
+          }}
           onClick={() => handleSectionChange("intro")}
         >
           portfolio
@@ -65,13 +84,31 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
               className={`interactive-element text-xs ${activeSection === item.id ? "opacity-100" : "opacity-50"}`}
               onClick={() => handleSectionChange(item.id)}
               whileHover={{ opacity: 1 }}
+              transition={{ duration: 0.2 }}
+              style={{ 
+                transform: "translate3d(0, 0, 0)",
+                backfaceVisibility: "hidden",
+                perspective: "1000px",
+                willChange: "opacity"
+              }}
             >
               {item.label}
               {activeSection === item.id && (
                 <motion.div
                   className="h-px bg-white mt-1"
                   layoutId="activeNavSection"
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 300, 
+                    damping: 30,
+                    mass: 0.5
+                  }}
+                  style={{ 
+                    transform: "translate3d(0, 0, 0)",
+                    backfaceVisibility: "hidden",
+                    perspective: "1000px",
+                    willChange: "transform"
+                  }}
                 />
               )}
             </motion.button>
@@ -83,6 +120,13 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
           href="mailto:hello@example.com"
           className="hidden md:block text-xs interactive-element"
           whileHover={{ opacity: 0.7 }}
+          transition={{ duration: 0.2 }}
+          style={{ 
+            transform: "translate3d(0, 0, 0)",
+            backfaceVisibility: "hidden",
+            perspective: "1000px",
+            willChange: "opacity"
+          }}
         >
           contact
         </motion.a>
@@ -92,19 +136,39 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
           className="md:hidden interactive-element p-1"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+          style={{ 
+            transform: "translate3d(0, 0, 0)",
+            backfaceVisibility: "hidden",
+            perspective: "1000px",
+            willChange: "transform"
+          }}
         >
           {mobileMenuOpen ? <X size={20} className="text-white" /> : <Menu size={20} className="text-white" />}
         </motion.button>
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ 
+              duration: 0.3, 
+              ease: [0.16, 1, 0.3, 1],
+              height: {
+                duration: 0.3,
+                ease: [0.16, 1, 0.3, 1]
+              }
+            }}
+            style={{ 
+              transform: "translate3d(0, 0, 0)",
+              backfaceVisibility: "hidden",
+              perspective: "1000px",
+              willChange: "transform, opacity, height"
+            }}
             className="md:hidden bg-black/95 backdrop-blur-sm overflow-hidden"
           >
             <div className="container mx-auto px-4 py-6 flex flex-col space-y-6">
@@ -118,14 +182,34 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
                   whileHover={{ x: 5, opacity: 1 }}
                   initial={{ x: -10, opacity: 0 }}
                   animate={{ x: 0, opacity: activeSection === item.id ? 1 : 0.6 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ 
+                    duration: 0.2,
+                    ease: [0.16, 1, 0.3, 1]
+                  }}
+                  style={{ 
+                    transform: "translate3d(0, 0, 0)",
+                    backfaceVisibility: "hidden",
+                    perspective: "1000px",
+                    willChange: "transform, opacity"
+                  }}
                 >
                   {item.label}
                   {activeSection === item.id && (
                     <motion.div
                       className="h-px bg-white mt-1 w-8"
                       layoutId="activeMobileNavSection"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 300, 
+                        damping: 30,
+                        mass: 0.5
+                      }}
+                      style={{ 
+                        transform: "translate3d(0, 0, 0)",
+                        backfaceVisibility: "hidden",
+                        perspective: "1000px",
+                        willChange: "transform"
+                      }}
                     />
                   )}
                 </motion.button>
@@ -138,7 +222,17 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
                 whileHover={{ x: 5, opacity: 0.7 }}
                 initial={{ x: -10, opacity: 0 }}
                 animate={{ x: 0, opacity: 0.6 }}
-                transition={{ duration: 0.2, delay: 0.2 }}
+                transition={{ 
+                  duration: 0.2, 
+                  delay: 0.2,
+                  ease: [0.16, 1, 0.3, 1]
+                }}
+                style={{ 
+                  transform: "translate3d(0, 0, 0)",
+                  backfaceVisibility: "hidden",
+                  perspective: "1000px",
+                  willChange: "transform, opacity"
+                }}
               >
                 contact
               </motion.a>
