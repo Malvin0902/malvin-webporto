@@ -101,11 +101,11 @@ export default function AboutSection({ setActiveSection }: AboutSectionProps) {
                 <motion.a
                   key={platform}
                   href="#"
-                  className="text-xs border border-gray-700 px-3 py-2 hover:bg-gray-900 transition-colors interactive-element"
+                  className="text-xs border border-gray-300 dark:border-gray-700 px-3 py-2 hover:bg-gray-200 dark:hover:bg-gray-900 transition-colors interactive-element"
                   whileHover={{
                     y: -3,
-                    borderColor: "rgba(255, 255, 255, 0.5)",
-                    backgroundColor: "rgba(30, 30, 30, 1)",
+                    borderColor: "rgba(var(--foreground), 0.5)",
+                    backgroundColor: "rgba(var(--foreground), 0.1)",
                     transition: { duration: 0.2 },
                   }}
                   initial={{ opacity: 0, y: 20 }}

@@ -55,7 +55,7 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm h-full w-full z-10"
+            className="fixed inset-0 bg-black/50 dark:bg-black/80 backdrop-blur-sm h-full w-full z-10"
             role="dialog"
             aria-modal="true"
             aria-labelledby={`dialog-title-${id}`}
@@ -73,7 +73,7 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
               <motion.div
                 layoutId={`card-${active.title}-${id}`}
                 ref={ref}
-                className="w-full max-w-[600px] my-8 flex flex-col bg-[rgba(20,20,20,0.95)] border border-gray-800/50 sm:rounded-xl overflow-hidden backdrop-blur-sm shadow-2xl"
+                className="w-full max-w-[600px] my-8 flex flex-col bg-white/95 dark:bg-[rgba(20,20,20,0.95)] border border-gray-200/50 dark:border-gray-800/50 sm:rounded-xl overflow-hidden backdrop-blur-sm shadow-2xl"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -87,10 +87,10 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
               >
                 <motion.div 
                   layoutId={`image-${active.title}-${id}`}
-                  className="w-full h-72 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg bg-[rgba(15,15,15,1)] flex items-center justify-center text-4xl relative overflow-hidden"
+                  className="w-full h-72 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg bg-gray-100 dark:bg-[rgba(15,15,15,1)] flex items-center justify-center text-4xl relative overflow-hidden"
                 >
                   {active.icon}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/10 dark:to-black/20" />
                 </motion.div>
 
                 <div className="p-6">
@@ -129,7 +129,7 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
                       {active.tags.map((tag, index) => (
                         <span 
                           key={index} 
-                          className="skill-tag bg-white/5 hover:bg-white/10 transition-colors"
+                          className="skill-tag bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors"
                         >
                           {tag}
                         </span>
@@ -148,7 +148,7 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
                         href={active.ctaLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                        className="inline-flex items-center px-6 py-3 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 rounded-lg transition-colors"
                       >
                         <span>{active.ctaText || 'View Project'}</span>
                         <span className="ml-2 inline-block transition-transform duration-200">
@@ -190,7 +190,7 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
                   card.tags.map((tag, i) => (
                     <motion.span
                       key={i}
-                      className="skill-tag mr-2 mb-2 bg-white/5 hover:bg-white/10 transition-colors"
+                      className="skill-tag mr-2 mb-2 bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors"
                       whileHover={{ opacity: 0.8 }}
                       transition={{ duration: 0.2 }}
                     >

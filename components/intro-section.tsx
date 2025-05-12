@@ -131,7 +131,7 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
               transition={{ duration: 0.5 }}
               className={`${message.startsWith("you:") ? "text-right" : ""}`}
             >
-              <span className={`inline-block p-3 ${message.startsWith("you:") ? "bg-gray-900" : ""}`}>{message}</span>
+              <span className={`inline-block p-3 ${message.startsWith("you:") ? "bg-gray-200 dark:bg-gray-900" : ""}`}>{message}</span>
             </motion.div>
           ))}
 
@@ -152,7 +152,7 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
                 {responseOptions.map((option, index) => (
                   <motion.button
                     key={index}
-                    className="block text-left p-3 w-full hover:bg-gray-900 transition-colors"
+                    className="block text-left p-3 w-full hover:bg-gray-200 dark:hover:bg-gray-900 transition-colors"
                     onClick={option.action}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -181,8 +181,8 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
                   />
                   <motion.button
                     type="submit"
-                    className="bg-gray-900 px-4 text-sm hover:bg-gray-800 transition-colors"
-                    whileHover={{ backgroundColor: "rgba(40, 40, 40, 1)" }}
+                    className="bg-gray-200 dark:bg-gray-900 px-4 text-sm hover:bg-gray-300 dark:hover:bg-gray-800 transition-colors"
+                    whileHover={{ backgroundColor: "rgba(229, 231, 235, 1)" }}
                     whileTap={{ scale: 0.98 }}
                   >
                     send
