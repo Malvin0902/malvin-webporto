@@ -3,33 +3,69 @@
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import Image from "next/image"
+import { Github, Linkedin, Instagram, Mail, MessageSquareText } from "lucide-react"
 
 interface AboutSectionProps {
   setActiveSection: (section: string) => void
+}
+
+interface SocialLink {
+  name: string
+  href: string
+  icon: React.ReactNode
+  text?: string
 }
 
 export default function AboutSection({ setActiveSection }: AboutSectionProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
+  const education = [
+    {
+      role: "Undergraduate Computer Science",
+      company: "University of Indonesia",
+      period: "2023 - Present",
+      description: "Focusing on software engineering and web development. Active in tech communities and hackathons.",
+    },
+    
+    {
+      role: "High School Diploma",
+      company: "SMA Alfa Centauri",
+      period: "2020 - 2023",
+      description: "Science major with focus on mathematics and computer science.",
+    },
+  ]
+
   const experiences = [
     {
-      role: "Senior Designer & Developer",
-      company: "Digital Studio",
-      period: "2021 - Present",
-      description: "Leading design and development for editorial and experimental web projects.",
+      role: "Full Stack Developer Intern",
+      company: "Tech Company",
+      period: "2023 - Present",
+      description: "Working on web applications using React, Next.js, and TypeScript. Collaborating with the team on various projects.",
     },
     {
-      role: "UI/UX Designer",
-      company: "Creative Agency",
-      period: "2018 - 2021",
-      description: "Designed user interfaces and experiences for various clients across different industries.",
+      role: "Web Development Bootcamp",
+      company: "Binar Academy",
+      period: "2023",
+      description: "Completed intensive full-stack development training. Built several projects using modern web technologies.",
+    },
+  ]
+
+  const socialLinks: SocialLink[] = [
+    {
+      name: "GitHub",
+      href: "#",
+      icon: <Github size={16} />,
     },
     {
-      role: "Frontend Developer",
-      company: "Tech Startup",
-      period: "2016 - 2018",
-      description: "Developed responsive and interactive web applications using modern JavaScript frameworks.",
+      name: "LinkedIn",
+      href: "#",
+      icon: <Linkedin size={16} />,
+    },
+    {
+      name: "Instagram",
+      href: "#",
+      icon: <Instagram size={16} />,
     },
   ]
 
@@ -72,73 +108,137 @@ export default function AboutSection({ setActiveSection }: AboutSectionProps) {
         animate={isInView ? "visible" : "hidden"}
         className="grid grid-cols-1 md:grid-cols-2 gap-12"
       >
-        <motion.div variants={itemVariants}>
+        <motion.div variants={itemVariants} className="order-1 md:order-1">
           <div className="mb-8 flex justify-center md:justify-start">
             <div className="relative w-48 h-48 rounded-full overflow-hidden border-2 border-gray-200 dark:border-gray-800">
-              <Image src="/placeholder.svg?height=200&width=200" alt="Profile picture" fill className="object-cover" />
+              <Image 
+                src="/profile-photo.jpg" 
+                alt="Malvin's profile picture" 
+                fill 
+                className="object-cover"
+                priority
+              />
             </div>
           </div>
 
           <p className="text-lg mb-6">
-            I'm passionate about creating meaningful digital experiences that combine editorial design principles with
-            modern web technologies.
-          </p>
-          <p className="opacity-80 mb-6">
-            With a background in both design and development, I bridge the gap between aesthetics and functionality. My
-            approach is minimalist and typography-focused, drawing inspiration from print design while embracing the
-            interactive possibilities of digital media.
-          </p>
-          <p className="opacity-80 mb-8">
-            I believe that great digital experiences start with a deep understanding of content and context. Whether
-            designing a website, application, or digital publication, I focus on creating interfaces that communicate
-            clearly and elegantly.
+            I'm a junior full stack developer passionate about creating meaningful digital experiences. My work combines modern web technologies with clean, efficient code.
           </p>
 
-          <div className="mt-8">
-            <h3 className="text-lg mb-4">Connect</h3>
-            <div className="flex space-x-4">
-              {["Twitter", "LinkedIn", "GitHub", "Email"].map((platform, index) => (
+          <div className="mt-12 space-y-8 md:block">
+            <div>
+              <h3 className="text-lg mb-4">Connect</h3>
+              <div className="grid grid-cols-3 gap-3">
+                {socialLinks.map((platform, index) => (
+                  <motion.a
+                    key={platform.name}
+                    href={platform.href}
+                    className="group flex items-center justify-center gap-2 text-xs border border-gray-300 dark:border-gray-700 px-3 py-2.5 hover:bg-gray-200 dark:hover:bg-gray-900 transition-colors interactive-element"
+                    whileHover={{
+                      y: -2,
+                      borderColor: "rgba(var(--foreground), 0.5)",
+                      backgroundColor: "rgba(var(--foreground), 0.1)",
+                      transition: { duration: 0.2 },
+                    }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                  >
+                    <span className="opacity-70 group-hover:opacity-100 transition-opacity">
+                      {platform.icon}
+                    </span>
+                    <span className="truncate">
+                      {platform.text || platform.name}
+                    </span>
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+            >
+              <h3 className="text-lg mb-4">Contact Me</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <motion.a
-                  key={platform}
-                  href="#"
-                  className="text-xs border border-gray-300 dark:border-gray-700 px-3 py-2 hover:bg-gray-200 dark:hover:bg-gray-900 transition-colors interactive-element"
+                  href="mailto:malvinmraqin@gmail.com"
+                  className="group flex items-center gap-2.5 text-sm border border-gray-300 dark:border-gray-700 px-4 py-3 hover:bg-gray-200 dark:hover:bg-gray-900 transition-colors interactive-element"
                   whileHover={{
-                    y: -3,
+                    y: -2,
                     borderColor: "rgba(var(--foreground), 0.5)",
                     backgroundColor: "rgba(var(--foreground), 0.1)",
                     transition: { duration: 0.2 },
                   }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
                 >
-                  {platform.toLowerCase()}
+                  <Mail size={18} className="opacity-70 group-hover:opacity-100 transition-opacity" />
+                  <span className="truncate">malvinmraqin@gmail.com</span>
                 </motion.a>
-              ))}
-            </div>
+
+                <motion.a
+                  href="#"
+                  className="group flex items-center gap-2.5 text-sm border border-gray-300 dark:border-gray-700 px-4 py-3 hover:bg-gray-200 dark:hover:bg-gray-900 transition-colors interactive-element"
+                  whileHover={{
+                    y: -2,
+                    borderColor: "rgba(var(--foreground), 0.5)",
+                    backgroundColor: "rgba(var(--foreground), 0.1)",
+                    transition: { duration: 0.2 },
+                  }}
+                >
+                  <MessageSquareText size={18} className="opacity-70 group-hover:opacity-100 transition-opacity" />
+                  <span className="truncate">@malv92</span>
+                </motion.a>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
 
-        <motion.div variants={itemVariants}>
-          <h3 className="text-lg mb-6">Experience</h3>
-          <div className="space-y-8">
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                className="timeline-item pl-6"
-                initial={{ opacity: 0, x: 20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.15 }}
-                whileHover={{ x: 5, transition: { duration: 0.2 } }}
-              >
-                <h4 className="text-base">{exp.role}</h4>
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm opacity-70">{exp.company}</span>
-                  <span className="text-xs opacity-50">{exp.period}</span>
-                </div>
-                <p className="text-sm opacity-80">{exp.description}</p>
-              </motion.div>
-            ))}
+        <motion.div variants={itemVariants} className="space-y-12 order-2 md:order-2">
+          <div>
+            <h3 className="text-lg mb-6">Experience</h3>
+            <div className="space-y-8">
+              {experiences.map((exp, index) => (
+                <motion.div
+                  key={index}
+                  className="timeline-item pl-6"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                  transition={{ duration: 0.5, delay: 0.3 + index * 0.15 }}
+                  whileHover={{ x: 5, transition: { duration: 0.2 } }}
+                >
+                  <h4 className="text-base">{exp.role}</h4>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm opacity-70">{exp.company}</span>
+                    <span className="text-xs opacity-50">{exp.period}</span>
+                  </div>
+                  <p className="text-sm opacity-80">{exp.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-lg mb-6">Education</h3>
+            <div className="space-y-8">
+              {education.map((edu, index) => (
+                <motion.div
+                  key={index}
+                  className="timeline-item pl-6"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                  transition={{ duration: 0.5, delay: 0.3 + index * 0.15 }}
+                  whileHover={{ x: 5, transition: { duration: 0.2 } }}
+                >
+                  <h4 className="text-base">{edu.role}</h4>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm opacity-70">{edu.company}</span>
+                    <span className="text-xs opacity-50">{edu.period}</span>
+                  </div>
+                  <p className="text-sm opacity-80">{edu.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </motion.div>
