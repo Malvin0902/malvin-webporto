@@ -38,33 +38,27 @@ export default function AboutSection({ setActiveSection }: AboutSectionProps) {
 
   const experiences = [
     {
-      role: "Full Stack Developer Intern",
+      role: "Intern",
       company: "Tech Company",
-      period: "2023 - Present",
-      description: "Working on web applications using React, Next.js, and TypeScript. Collaborating with the team on various projects.",
-    },
-    {
-      role: "Web Development Bootcamp",
-      company: "Binar Academy",
-      period: "2023",
-      description: "Completed intensive full-stack development training. Built several projects using modern web technologies.",
+      period: "Soon",
+      description: "-",
     },
   ]
 
   const socialLinks: SocialLink[] = [
     {
       name: "GitHub",
-      href: "#",
+      href: "https://github.com/Malvin0902",
       icon: <Github size={16} />,
     },
     {
       name: "LinkedIn",
-      href: "#",
+      href: "https://www.linkedin.com/in/malvinmraqin/",
       icon: <Linkedin size={16} />,
     },
     {
       name: "Instagram",
-      href: "#",
+      href: "https://www.instagram.com/mlvn.raqin/?hl=id",
       icon: <Instagram size={16} />,
     },
   ]

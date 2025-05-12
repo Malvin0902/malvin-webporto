@@ -51,7 +51,7 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="text-sm cursor-pointer font-mono" onClick={() => handleSectionChange("intro")}>
-            portfolio
+            malv
           </div>
 
           {/* Desktop Navigation */}
