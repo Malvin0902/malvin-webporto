@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 
 export default function Cursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 })
@@ -8,88 +8,84 @@ export default function Cursor() {
   const [isClicking, setIsClicking] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
+  
+  const rafRef = useRef<number | undefined>(undefined)
+  const lastTimeRef = useRef(0)
+  const throttleMs = 1000 / 120 // 120fps for smoother movement
 
-  useEffect(() => {
-    // Check if we're on a mobile device
-    const checkMobile = () => {
-      setIsMobile(window.matchMedia("(max-width: 768px)").matches)
-    }
-
-    // Initial check
-    checkMobile()
-
-    // Add listener for screen size changes
-    window.addEventListener("resize", checkMobile)
-
-    return () => window.removeEventListener("resize", checkMobile)
+  // Memoize the mobile check function
+  const checkMobile = useCallback(() => {
+    setIsMobile(window.matchMedia("(max-width: 768px)").matches)
   }, [])
 
   useEffect(() => {
-    // Skip cursor effects on mobile
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [checkMobile])
+
+  useEffect(() => {
     if (isMobile) return
 
-    let inactivityTimer: NodeJS.Timeout
-
     const updatePosition = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY })
-      setIsVisible(true)
-
-      // Reset inactivity timer
-      clearTimeout(inactivityTimer)
-      inactivityTimer = setTimeout(() => {
-        setIsVisible(false)
-      }, 5000)
+      const now = performance.now()
+      if (now - lastTimeRef.current < throttleMs) return
+      
+      lastTimeRef.current = now
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current)
+      }
+      
+      rafRef.current = requestAnimationFrame(() => {
+        setPosition({ x: e.clientX, y: e.clientY })
+        setIsVisible(true)
+      })
     }
 
-    const updateCursorType = () => {
-      const hoveredElement = document.elementFromPoint(position.x, position.y)
-      setIsPointer(
-        hoveredElement?.tagName === "BUTTON" ||
-          hoveredElement?.tagName === "A" ||
-          !!hoveredElement?.closest("button, a"),
-      )
+    const updateCursorType = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      const isInteractive = 
+        target.tagName === "BUTTON" ||
+        target.tagName === "A" ||
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.tagName === "SELECT" ||
+        target.isContentEditable ||
+        !!target.closest("button, a, [role='button'], [role='link']")
+      
+      if (isInteractive !== isPointer) {
+        setIsPointer(isInteractive)
+      }
     }
 
-    const handleMouseDown = () => setIsClicking(true)
-    const handleMouseUp = () => setIsClicking(false)
+    const handleMouseDown = () => {
+      setIsClicking(true)
+      // Add a small delay to make the click animation feel more natural
+      setTimeout(() => setIsClicking(false), 100)
+    }
 
-    window.addEventListener("mousemove", updatePosition)
-    window.addEventListener("mousemove", updateCursorType)
+    window.addEventListener("mousemove", updatePosition, { passive: true })
+    window.addEventListener("mousemove", updateCursorType, { passive: true })
     window.addEventListener("mousedown", handleMouseDown)
-    window.addEventListener("mouseup", handleMouseUp)
-
-    // Initial inactivity timer
-    inactivityTimer = setTimeout(() => {
-      setIsVisible(false)
-    }, 5000)
 
     return () => {
       window.removeEventListener("mousemove", updatePosition)
       window.removeEventListener("mousemove", updateCursorType)
       window.removeEventListener("mousedown", handleMouseDown)
-      window.removeEventListener("mouseup", handleMouseUp)
-      clearTimeout(inactivityTimer)
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current)
+      }
     }
-  }, [position, isMobile])
+  }, [isMobile, isPointer])
 
-  // Don't render cursor on mobile
   if (isMobile) return null
 
   const cursorStyle = {
     left: `${position.x}px`,
     top: `${position.y}px`,
-    transform: `translate(-50%, -50%) scale(${isPointer ? 1.2 : isClicking ? 0.8 : 1})`,
-    opacity: isVisible ? 0.8 : 0,
-    backgroundColor: isClicking ? "rgba(var(--foreground), 0.2)" : "transparent",
+    transform: `translate(-50%, -50%) scale(${isPointer ? 2 : isClicking ? 0.5 : 1})`,
+    opacity: isVisible ? 1 : 0,
   }
 
-  const dotStyle = {
-    transform: `translate(-50%, -50%) scale(${isClicking ? 1.5 : 1})`,
-  }
-
-  return (
-    <div className="cursor" style={cursorStyle}>
-      <div className="cursor-dot" style={dotStyle} />
-    </div>
-  )
+  return <div className="cursor" style={cursorStyle} />
 }

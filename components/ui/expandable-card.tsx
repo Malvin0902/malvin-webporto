@@ -73,7 +73,7 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
               <motion.div
                 layoutId={`card-${active.title}-${id}`}
                 ref={ref}
-                className="w-full max-w-[600px] my-8 flex flex-col bg-white/95 dark:bg-[rgba(20,20,20,0.95)] border border-gray-200/50 dark:border-gray-800/50 sm:rounded-xl overflow-hidden backdrop-blur-sm shadow-2xl"
+                className="w-full max-w-[600px] my-8 flex flex-col bg-white/95 dark:bg-[rgba(20,20,20,0.95)] border border-gray-200/50 dark:border-gray-800/50 sm:rounded-xl overflow-hidden backdrop-blur-sm shadow-2xl relative"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -85,6 +85,14 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
                   willChange: "auto"
                 }}
               >
+                <button
+                  onClick={() => setActive(null)}
+                  className="absolute top-4 right-4 p-2 rounded-full bg-gray-100/50 dark:bg-white/5 hover:bg-gray-200/50 dark:hover:bg-white/10 transition-colors z-10"
+                  aria-label="Close"
+                >
+                  <X size={18} className="opacity-70" />
+                </button>
+
                 <motion.div 
                   layoutId={`image-${active.title}-${id}`}
                   className="w-full h-72 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg bg-gray-100 dark:bg-[rgba(15,15,15,1)] flex items-center justify-center text-4xl relative overflow-hidden"
