@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
+import ThemeToggle from "./theme-toggle"
 
 interface NavbarProps {
   activeSection: string
@@ -68,7 +69,8 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
           </div>
 
           {/* Contact Link (Desktop) */}
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex items-center space-x-4">
+            <ThemeToggle />
             <a
               href="mailto:hello@example.com"
               className="text-xs font-mono opacity-70 hover:opacity-100 transition-opacity"
@@ -126,15 +128,20 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
                   </motion.button>
                 ))}
 
-                <motion.a
-                  href="mailto:hello@example.com"
+                <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.5 }}
-                  className="text-xl opacity-60 hover:opacity-100 transition-opacity mt-4 font-mono"
+                  className="flex items-center space-x-4"
                 >
-                  contact
-                </motion.a>
+                  <ThemeToggle />
+                  <a
+                    href="mailto:hello@example.com"
+                    className="text-xl opacity-60 hover:opacity-100 transition-opacity font-mono"
+                  >
+                    contact
+                  </a>
+                </motion.div>
               </div>
             </motion.div>
           </div>
