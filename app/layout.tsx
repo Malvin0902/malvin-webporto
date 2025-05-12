@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://your-portfolio-url.com",
+    url: "https://malvin-webporto.vercel.app",
     title: "Malvin Muhammad Raqin | Junior Full Stack Developer",
     description: "Portfolio of Malvin Muhammad Raqin, a Junior Full Stack Developer. Explore my projects, skills, and experiences in web development and software engineering.",
     siteName: "Malvin Muhammad Raqin's Portfolio",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     google: "your-google-site-verification",
   },
   alternates: {
-    canonical: "https://your-portfolio-url.com",
+    canonical: "https://malvin-webporto.vercel.app",
   }
 }
 
@@ -71,6 +71,24 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Malvin M Raqin",
+              "url": "https://malvin-webporto.vercel.app",
+              "jobTitle": "Full Stack Developer",
+              "alumniOf": "University of Indonesia",
+              "sameAs": [
+                "https://github.com/Malvin0902",
+                "https://www.linkedin.com/in/malvinmraqin/",
+                "https://www.instagram.com/mlvn.raqin/"
+              ]
+            })
+          }}
+        />
       </body>
     </html>
   )

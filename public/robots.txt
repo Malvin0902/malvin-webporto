@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://your-portfolio-url.com/sitemap.xml
+Sitemap: https://malvin-webporto.vercel.app/sitemap.xml
 
 # Disallow crawling of private or admin areas
 Disallow: /api/
@@ -11,4 +11,4 @@ Disallow: /admin/
 Disallow: /private/
 
 # Crawl-delay for all bots
-Crawl-delay: 10 
+Crawl-delay: 10
