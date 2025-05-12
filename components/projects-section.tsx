@@ -13,7 +13,6 @@ export default function ProjectsSection({ setActiveSection }: ProjectsSectionPro
 
   const projects: CardProps[] = [
     {
-      id: 1,
       title: "Editorial Design System",
       description: "A comprehensive design system for digital publications with a focus on typography and readability.",
       tags: ["Design System", "Typography", "UI/UX"],
@@ -44,7 +43,6 @@ export default function ProjectsSection({ setActiveSection }: ProjectsSectionPro
       ),
     },
     {
-      id: 2,
       title: "Interactive Storytelling Platform",
       description:
         "A web platform that enables authors to create interactive, branching narratives with rich media elements.",
@@ -76,7 +74,6 @@ export default function ProjectsSection({ setActiveSection }: ProjectsSectionPro
       ),
     },
     {
-      id: 3,
       title: "Minimalist E-commerce",
       description: "A clean, typography-focused e-commerce experience for a boutique fashion brand.",
       tags: ["E-commerce", "Minimalist", "Next.js"],

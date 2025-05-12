@@ -68,15 +68,9 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
             ))}
           </div>
 
-          {/* Contact Link (Desktop) */}
-          <div className="hidden md:flex items-center space-x-4">
+          {/* Theme Toggle (Desktop) */}
+          <div className="hidden md:flex items-center">
             <ThemeToggle />
-            <a
-              href="mailto:hello@example.com"
-              className="text-xs font-mono opacity-70 hover:opacity-100 transition-opacity"
-            >
-              contact
-            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -132,15 +126,8 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.5 }}
-                  className="flex items-center space-x-4"
                 >
                   <ThemeToggle />
-                  <a
-                    href="mailto:hello@example.com"
-                    className="text-xl opacity-60 hover:opacity-100 transition-opacity font-mono"
-                  >
-                    contact
-                  </a>
                 </motion.div>
               </div>
             </motion.div>

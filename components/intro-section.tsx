@@ -103,9 +103,7 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
             <h1 className="text-5xl mb-8 leading-tight">
               <Greeting />
               <br />
-              i'm a
-              <br />
-              <span className="text-gradient">developer.</span>
+              i'm a <span className="text-gradient">developer.</span>
             </h1>
           </motion.div>
 

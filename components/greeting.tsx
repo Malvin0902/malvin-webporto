@@ -6,20 +6,14 @@ import { motion, AnimatePresence } from "framer-motion"
 // Selected greetings that work well visually
 const greetings = [
   { text: "hi", language: "English" },
-  { text: "hola", language: "Spanish" },
   { text: "bonjour", language: "French" },
   { text: "ciao", language: "Italian" },
-  { text: "hallo", language: "German" },
   { text: "olá", language: "Portuguese" },
   { text: "hej", language: "Swedish" },
-  { text: "salut", language: "Romanian" },
-  { text: "ahoj", language: "Czech" },
-  { text: "hei", language: "Finnish" },
   { text: "你好", language: "Chinese" },
   { text: "こんにちは", language: "Japanese" },
   { text: "안녕하세요", language: "Korean" },
-  { text: "नमस्ते", language: "Hindi" },
-  { text: "مرحبا", language: "Arabic" },
+  { text: "السلام عليكم", "language": "Arabic" },
   { text: "привет", language: "Russian" },
 ]
 
@@ -45,7 +39,7 @@ export default function Greeting() {
           transition={{ duration: 0.3 }}
           className="absolute left-0 top-0 inline-block"
         >
-          {greetings[currentIndex].text}.
+          {greetings[currentIndex].text}
         </motion.span>
       </AnimatePresence>
     </div>
