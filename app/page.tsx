@@ -1,20 +1,19 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { AnimatePresence } from "framer-motion"
 import dynamic from "next/dynamic"
 import Navbar from "@/components/navbar"
 import IntroSection from "@/components/intro-section"
 import ProjectsSection from "@/components/projects-section"
 import SkillsSection from "@/components/skills-section"
 import AboutSection from "@/components/about-section"
+import DotBackground from "@/components/ui/dot-background"
 
 // Dynamically import the Cursor component with no SSR
 const Cursor = dynamic(() => import("@/components/cursor"), { ssr: false })
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("intro")
-  const [showGrid, setShowGrid] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
   // Add this function to handle section changes and scroll to top
@@ -27,11 +26,6 @@ export default function Home() {
     // Disable default cursor
     document.body.style.cursor = "none"
 
-    // Show grid after a delay
-    const gridTimer = setTimeout(() => {
-      setShowGrid(true)
-    }, 1000)
-
     // Hide loading screen after delay
     const loadingTimer = setTimeout(() => {
       setIsLoading(false)
@@ -39,44 +33,31 @@ export default function Home() {
 
     return () => {
       document.body.style.cursor = "auto"
-      clearTimeout(gridTimer)
       clearTimeout(loadingTimer)
     }
   }, [])
 
   return (
-    <main className="min-h-screen relative">
+    <DotBackground className="min-h-screen">
       <Cursor />
 
       {/* Loading Screen */}
-      <AnimatePresence>
-        {isLoading && (
-          <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
-            <div className="text-2xl typing-effect">loading...</div>
-          </div>
-        )}
-      </AnimatePresence>
-
-      {/* Grid Background */}
-      <div className={`fixed inset-0 transition-opacity duration-1000 ${showGrid ? "opacity-100" : "opacity-0"}`}>
-        <div className="grid-background absolute inset-0"></div>
-      </div>
+      {isLoading && (
+        <div className="fixed inset-0 bg-white dark:bg-black z-50 flex items-center justify-center transition-opacity duration-300">
+          <div className="text-2xl typing-effect">loading...</div>
+        </div>
+      )}
 
       {/* Navbar */}
       <Navbar activeSection={activeSection} setActiveSection={handleSectionChange} />
 
       {/* Main Content */}
       <div className="container mx-auto px-4 pt-24 pb-16 relative z-10">
-        <AnimatePresence mode="wait">
-          {activeSection === "intro" && <IntroSection key="intro" setActiveSection={handleSectionChange} />}
-
-          {activeSection === "projects" && <ProjectsSection key="projects" setActiveSection={handleSectionChange} />}
-
-          {activeSection === "skills" && <SkillsSection key="skills" setActiveSection={handleSectionChange} />}
-
-          {activeSection === "about" && <AboutSection key="about" setActiveSection={handleSectionChange} />}
-        </AnimatePresence>
+        {activeSection === "intro" && <IntroSection setActiveSection={handleSectionChange} />}
+        {activeSection === "projects" && <ProjectsSection setActiveSection={handleSectionChange} />}
+        {activeSection === "skills" && <SkillsSection setActiveSection={handleSectionChange} />}
+        {activeSection === "about" && <AboutSection setActiveSection={handleSectionChange} />}
       </div>
-    </main>
+    </DotBackground>
   )
 }

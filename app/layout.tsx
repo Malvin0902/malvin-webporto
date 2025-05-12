@@ -1,8 +1,8 @@
 import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
 import { JetBrains_Mono } from "next/font/google"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -10,37 +10,54 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Malvin Muhammad Raqin - Junior Full Stack Developer Portfolio",
-  description: "Portfolio website of Malvin Muhammad Raqin (Malvin Raqin), a junior full stack developer specializing in creating minimal, text-based digital experiences. Explore my work in web development.",
-  keywords: "Malvin Muhammad Raqin, Malvin Raqin, junior full stack developer, portfolio, web development, UI/UX design, minimalist design",
+  title: "Malvin Muhammad Raqin | Junior Full Stack Developer",
+  description: "Portfolio of Malvin Muhammad Raqin, a Junior Full Stack Developer. Explore my projects, skills, and experiences in web development and software engineering.",
+  keywords: [
+    "Malvin Muhammad Raqin",
+    "Malvin Muhammad",
+    "Malvin Raqin",
+    "Malvin",
+    "developer portfolio",
+    "web developer",
+    "software engineer",
+    "full stack developer",
+    "react developer",
+    "typescript",
+    "junior developer",
+  ],
   authors: [{ name: "Malvin Muhammad Raqin" }],
   creator: "Malvin Muhammad Raqin",
-  icons: {
-    icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-  },
   openGraph: {
-    title: "Malvin Muhammad Raqin - Junior Full Stack Developer Portfolio",
-    description: "Portfolio website of Malvin Muhammad Raqin (Malvin Raqin), a junior full stack developer specializing in creating minimal, text-based digital experiences.",
     type: "website",
     locale: "en_US",
+    url: "https://your-portfolio-url.com",
+    title: "Malvin Muhammad Raqin | Junior Full Stack Developer",
+    description: "Portfolio of Malvin Muhammad Raqin, a Junior Full Stack Developer. Explore my projects, skills, and experiences in web development and software engineering.",
+    siteName: "Malvin Muhammad Raqin's Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Malvin Muhammad Raqin - Junior Full Stack Developer Portfolio",
-    description: "Portfolio website of Malvin Muhammad Raqin (Malvin Raqin), a junior full stack developer specializing in creating minimal, text-based digital experiences.",
+    title: "Malvin Muhammad Raqin | Junior Full Stack Developer",
+    description: "Portfolio of Malvin Muhammad Raqin, a Junior Full Stack Developer. Explore my projects, skills, and experiences in web development and software engineering.",
+    creator: "@raqinnnn",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
-  generator: 'Next.js'
+  verification: {
+    google: "your-google-site-verification",
+  },
+  alternates: {
+    canonical: "https://your-portfolio-url.com",
+  }
 }
 
 export default function RootLayout({

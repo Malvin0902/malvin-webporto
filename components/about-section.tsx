@@ -14,19 +14,19 @@ export default function AboutSection({ setActiveSection }: AboutSectionProps) {
 
   const experiences = [
     {
-      role: "Junior Full Stack Developer",
+      role: "Senior Designer & Developer",
       company: "Digital Studio",
       period: "2021 - Present",
-      description: "Developing full stack applications with focus on modern web technologies and best practices.",
+      description: "Leading design and development for editorial and experimental web projects.",
     },
     {
-      role: "Junior Full Stack Developer",
+      role: "UI/UX Designer",
       company: "Creative Agency",
       period: "2018 - 2021",
-      description: "Built and maintained web applications using modern JavaScript frameworks and backend technologies.",
+      description: "Designed user interfaces and experiences for various clients across different industries.",
     },
     {
-      role: "Junior Full Stack Developer",
+      role: "Frontend Developer",
       company: "Tech Startup",
       period: "2016 - 2018",
       description: "Developed responsive and interactive web applications using modern JavaScript frameworks.",
@@ -70,53 +70,51 @@ export default function AboutSection({ setActiveSection }: AboutSectionProps) {
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24"
+        className="grid grid-cols-1 md:grid-cols-2 gap-12"
       >
-        <motion.div variants={itemVariants} className="flex flex-col">
-          <div className="mb-12">
-            <div className="relative w-48 h-48 mx-auto md:mx-0">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="relative w-full h-full rounded-full overflow-hidden border border-gray-700"
-              >
-                <Image
-                  src="/profile-photo.jpg"
-                  alt="Profile photo"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </motion.div>
+        <motion.div variants={itemVariants}>
+          <div className="mb-8 flex justify-center md:justify-start">
+            <div className="relative w-48 h-48 rounded-full overflow-hidden border-2 border-gray-200 dark:border-gray-800">
+              <Image src="/placeholder.svg?height=200&width=200" alt="Profile picture" fill className="object-cover" />
             </div>
           </div>
-          <div className="flex-1">
-            <p className="text-lg mb-6">
-              I'm a junior full stack developer passionate about creating meaningful digital experiences. My work combines modern web technologies with clean, efficient code.
-            </p>
-            <div>
-              <h3 className="text-lg mb-4">Connect</h3>
-              <div className="flex space-x-4">
-                {["Twitter", "LinkedIn", "GitHub", "Email"].map((platform, index) => (
-                  <motion.a
-                    key={platform}
-                    href="#"
-                    className="text-xs border border-gray-700 px-3 py-2 hover:bg-gray-900 transition-colors interactive-element"
-                    whileHover={{
-                      y: -3,
-                      borderColor: "rgba(255, 255, 255, 0.5)",
-                      backgroundColor: "rgba(30, 30, 30, 1)",
-                      transition: { duration: 0.2 },
-                    }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                  >
-                    {platform.toLowerCase()}
-                  </motion.a>
-                ))}
-              </div>
+
+          <p className="text-lg mb-6">
+            I'm passionate about creating meaningful digital experiences that combine editorial design principles with
+            modern web technologies.
+          </p>
+          <p className="opacity-80 mb-6">
+            With a background in both design and development, I bridge the gap between aesthetics and functionality. My
+            approach is minimalist and typography-focused, drawing inspiration from print design while embracing the
+            interactive possibilities of digital media.
+          </p>
+          <p className="opacity-80 mb-8">
+            I believe that great digital experiences start with a deep understanding of content and context. Whether
+            designing a website, application, or digital publication, I focus on creating interfaces that communicate
+            clearly and elegantly.
+          </p>
+
+          <div className="mt-8">
+            <h3 className="text-lg mb-4">Connect</h3>
+            <div className="flex space-x-4">
+              {["Twitter", "LinkedIn", "GitHub", "Email"].map((platform, index) => (
+                <motion.a
+                  key={platform}
+                  href="#"
+                  className="text-xs border border-gray-700 px-3 py-2 hover:bg-gray-900 transition-colors interactive-element"
+                  whileHover={{
+                    y: -3,
+                    borderColor: "rgba(255, 255, 255, 0.5)",
+                    backgroundColor: "rgba(30, 30, 30, 1)",
+                    transition: { duration: 0.2 },
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                >
+                  {platform.toLowerCase()}
+                </motion.a>
+              ))}
             </div>
           </div>
         </motion.div>

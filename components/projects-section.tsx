@@ -13,13 +13,14 @@ export default function ProjectsSection({ setActiveSection }: ProjectsSectionPro
 
   const projects: CardProps[] = [
     {
+      id: 1,
       title: "Editorial Design System",
       description: "A comprehensive design system for digital publications with a focus on typography and readability.",
       tags: ["Design System", "Typography", "UI/UX"],
       icon: "✓",
       src: "/placeholder.svg?height=400&width=400",
-      ctaText: "View Project",
-      ctaLink: "https://editorial-design-system.example.com",
+      ctaText: "",
+      ctaLink: "",
       content: () => (
         <>
           <p>
@@ -43,14 +44,15 @@ export default function ProjectsSection({ setActiveSection }: ProjectsSectionPro
       ),
     },
     {
+      id: 2,
       title: "Interactive Storytelling Platform",
       description:
         "A web platform that enables authors to create interactive, branching narratives with rich media elements.",
       tags: ["Web Development", "Interactive", "React"],
       icon: "⬒",
       src: "/placeholder.svg?height=400&width=400",
-      ctaText: "View Project",
-      ctaLink: "https://storytelling-platform.example.com",
+      ctaText: "",
+      ctaLink: "",
       content: () => (
         <>
           <p>
@@ -74,13 +76,14 @@ export default function ProjectsSection({ setActiveSection }: ProjectsSectionPro
       ),
     },
     {
+      id: 3,
       title: "Minimalist E-commerce",
       description: "A clean, typography-focused e-commerce experience for a boutique fashion brand.",
       tags: ["E-commerce", "Minimalist", "Next.js"],
       icon: "◉",
       src: "/placeholder.svg?height=400&width=400",
-      ctaText: "View Project",
-      ctaLink: "https://minimalist-ecommerce.example.com",
+      ctaText: "",
+      ctaLink: "",
       content: () => (
         <>
           <p>

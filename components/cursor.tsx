@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
 
 export default function Cursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 })
@@ -13,16 +12,7 @@ export default function Cursor() {
   useEffect(() => {
     // Check if we're on a mobile device
     const checkMobile = () => {
-      const isMobileDevice = window.matchMedia("(max-width: 768px)").matches || 
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-      setIsMobile(isMobileDevice)
-      
-      // Add cursor pointer class to body when on mobile
-      if (isMobileDevice) {
-        document.body.classList.add('mobile-device')
-      } else {
-        document.body.classList.remove('mobile-device')
-      }
+      setIsMobile(window.matchMedia("(max-width: 768px)").matches)
     }
 
     // Initial check
@@ -31,10 +21,7 @@ export default function Cursor() {
     // Add listener for screen size changes
     window.addEventListener("resize", checkMobile)
 
-    return () => {
-      window.removeEventListener("resize", checkMobile)
-      document.body.classList.remove('mobile-device')
-    }
+    return () => window.removeEventListener("resize", checkMobile)
   }, [])
 
   useEffect(() => {
@@ -57,10 +44,9 @@ export default function Cursor() {
     const updateCursorType = () => {
       const hoveredElement = document.elementFromPoint(position.x, position.y)
       setIsPointer(
-        hoveredElement?.classList.contains("interactive-element") ||
-          hoveredElement?.tagName === "BUTTON" ||
+        hoveredElement?.tagName === "BUTTON" ||
           hoveredElement?.tagName === "A" ||
-          !!hoveredElement?.closest("button, a, .interactive-element"),
+          !!hoveredElement?.closest("button, a"),
       )
     }
 
@@ -89,24 +75,21 @@ export default function Cursor() {
   // Don't render cursor on mobile
   if (isMobile) return null
 
+  const cursorStyle = {
+    left: `${position.x}px`,
+    top: `${position.y}px`,
+    transform: `translate(-50%, -50%) scale(${isPointer ? 1.2 : isClicking ? 0.8 : 1})`,
+    opacity: isVisible ? 0.8 : 0,
+    backgroundColor: isClicking ? "rgba(var(--foreground), 0.2)" : "transparent",
+  }
+
+  const dotStyle = {
+    transform: `translate(-50%, -50%) scale(${isClicking ? 1.5 : 1})`,
+  }
+
   return (
-    <motion.div
-      className="cursor"
-      animate={{
-        x: position.x,
-        y: position.y,
-        scale: isPointer ? 1.2 : isClicking ? 0.8 : 1,
-        opacity: isVisible ? 1 : 0,
-        borderColor: isPointer ? "rgba(255, 255, 255, 0.8)" : "rgba(255, 255, 255, 0.4)",
-        width: isPointer ? "30px" : "15px",
-        height: isPointer ? "30px" : "15px",
-      }}
-      transition={{
-        type: "spring",
-        damping: 20,
-        stiffness: 400,
-        mass: 0.2,
-      }}
-    />
+    <div className="cursor" style={cursorStyle}>
+      <div className="cursor-dot" style={dotStyle} />
+    </div>
   )
 }

@@ -3,15 +3,10 @@
 import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
+import Greeting from "./greeting"
 
 interface IntroSectionProps {
   setActiveSection: (section: string) => void
-}
-
-const profile = {
-  name: "Your Name",
-  title: "junior full stack developer",
-  image: "/profile-photo.jpg",
 }
 
 export default function IntroSection({ setActiveSection }: IntroSectionProps) {
@@ -22,31 +17,13 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
   const [userResponse, setUserResponse] = useState("")
   const [isTyping, setIsTyping] = useState(false)
   const chatRef = useRef<HTMLDivElement>(null)
-  const [greeting, setGreeting] = useState("hi.")
-  const [isGreetingAnimating, setIsGreetingAnimating] = useState(false)
-  const [showDeveloper, setShowDeveloper] = useState(false)
 
-  const initialMessages = [
-    "hi",
-    "i'm a junior full stack developer.",
-    "would you like to know more about me?",
-  ]
+  const initialMessages = ["hi.", "i'm a junior full stack developer", "would you like to know more about me?"]
 
   const responseOptions = [
     { text: "show me your projects", action: () => setActiveSection("projects") },
     { text: "what are your skills?", action: () => setActiveSection("skills") },
     { text: "tell me about yourself", action: () => setActiveSection("about") },
-  ]
-
-  const greetings = [
-    "hi",
-    "bonjour",
-    "hola",
-    "こんにちは",
-    "你好",
-    "안녕하세요",
-    "ciao",
-    "hallo",
   ]
 
   useEffect(() => {
@@ -76,33 +53,8 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
     }
   }, [conversation, isTyping])
 
-  useEffect(() => {
-    let currentIndex = 0
-    const interval = setInterval(() => {
-      setIsGreetingAnimating(true)
-      setTimeout(() => {
-        currentIndex = (currentIndex + 1) % greetings.length
-        setGreeting(greetings[currentIndex])
-        setIsGreetingAnimating(false)
-      }, 800)
-    }, 4000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-    if (showChat) {
-      const timer = setTimeout(() => {
-        setShowDeveloper(true)
-      }, 2000)
-      return () => clearTimeout(timer)
-    }
-  }, [showChat])
-
   const handleStartChat = () => {
     setShowChat(true)
-    setConversation([initialMessages[0]])
-    setCurrentIndex(1)
   }
 
   const handleCustomResponse = (e: React.FormEvent) => {
@@ -127,21 +79,15 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
       },
     },
   }
 
   const itemVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { 
-        duration: 0.3,
-        ease: "easeOut"
-      } 
-    },
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
   }
 
   return (
@@ -150,43 +96,25 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
       animate="visible"
       variants={containerVariants}
       className="min-h-[80vh] flex flex-col justify-center max-w-2xl mx-auto"
-      style={{ 
-        transform: "translateZ(0)",
-        backfaceVisibility: "visible",
-        perspective: "none",
-        willChange: "auto"
-      }}
     >
       {!showChat ? (
         <>
           <motion.div variants={itemVariants} className="mb-16">
             <h1 className="text-5xl mb-8 leading-tight">
-              <motion.span
-                className="text-gradient"
-                animate={{ opacity: isGreetingAnimating ? 0 : 1 }}
-                transition={{ duration: 0.2 }}
-              >
-                {greeting}
-              </motion.span>
+              <Greeting />
+              <br />
+              i'm a
+              <br />
+              <span className="text-gradient">developer.</span>
             </h1>
-            <motion.p 
-              className="text-lg opacity-80 leading-relaxed"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              i'm a junior full stack developer.
-            </motion.p>
           </motion.div>
 
           {showButton && (
             <motion.button
-              className="button interactive-element self-start"
+              variants={itemVariants}
+              className="button self-start"
               onClick={handleStartChat}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              whileHover={{ opacity: 0.8 }}
+              whileHover={{ y: -3 }}
               whileTap={{ scale: 0.98 }}
             >
               →say hi
@@ -198,49 +126,38 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
           {conversation.map((message, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.2 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
               className={`${message.startsWith("you:") ? "text-right" : ""}`}
             >
-              <motion.span 
-                className={`inline-block p-3 ${message.startsWith("you:") ? "bg-gray-900" : ""}`}
-                whileHover={{ opacity: 0.8 }}
-                transition={{ duration: 0.2 }}
-              >
-                {message}
-              </motion.span>
+              <span className={`inline-block p-3 ${message.startsWith("you:") ? "bg-gray-900" : ""}`}>{message}</span>
             </motion.div>
           ))}
 
           {isTyping && (
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              className="inline-block p-3"
-              transition={{ duration: 0.2 }}
-            >
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="inline-block p-3">
               <span className="typing-effect"></span>
             </motion.div>
           )}
 
           {currentIndex === initialMessages.length && !isTyping && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
               className="mt-8"
             >
               <div className="space-y-3">
                 {responseOptions.map((option, index) => (
                   <motion.button
                     key={index}
-                    className="interactive-element block text-left p-3 w-full hover:bg-gray-900 transition-colors"
+                    className="block text-left p-3 w-full hover:bg-gray-900 transition-colors"
                     onClick={option.action}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.2, delay: 0.1 * index }}
-                    whileHover={{ opacity: 0.8 }}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: 0.1 * index }}
+                    whileHover={{ x: 5 }}
                   >
                     {option.text}
                   </motion.button>
@@ -250,24 +167,22 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
                 className="mt-6"
               >
                 <p className="text-gray-500 text-xs mb-2">or type your own response:</p>
                 <form onSubmit={handleCustomResponse} className="flex">
-                  <motion.input
+                  <input
                     type="text"
                     value={userResponse}
                     onChange={(e) => setUserResponse(e.target.value)}
-                    className="flex-1 bg-transparent border border-gray-800 p-2 text-sm focus:outline-none focus:border-gray-600 interactive-element"
+                    className="flex-1 bg-transparent border border-gray-800 p-2 text-sm focus:outline-none focus:border-gray-600"
                     placeholder="type your message..."
-                    whileFocus={{ opacity: 0.8 }}
-                    transition={{ duration: 0.2 }}
                   />
                   <motion.button
                     type="submit"
-                    className="bg-gray-900 px-4 text-sm hover:bg-gray-800 transition-colors interactive-element"
-                    whileHover={{ opacity: 0.8 }}
+                    className="bg-gray-900 px-4 text-sm hover:bg-gray-800 transition-colors"
+                    whileHover={{ backgroundColor: "rgba(40, 40, 40, 1)" }}
                     whileTap={{ scale: 0.98 }}
                   >
                     send
