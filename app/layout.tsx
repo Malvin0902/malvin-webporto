@@ -27,10 +27,11 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Malvin Muhammad Raqin" }],
   creator: "Malvin Muhammad Raqin",
+  metadataBase: new URL('https://malvinraqin.tech'),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://malvin-webporto.vercel.app",
+    url: "https://malvinraqin.tech",
     title: "Malvin Muhammad Raqin | Junior Full Stack Developer",
     description: "Portfolio of Malvin Muhammad Raqin, a Junior Full Stack Developer. Explore my projects, skills, and experiences in web development and software engineering.",
     siteName: "Malvin Muhammad Raqin's Portfolio",
@@ -56,7 +57,7 @@ export const metadata: Metadata = {
     google: "your-google-site-verification",
   },
   alternates: {
-    canonical: "https://malvin-webporto.vercel.app",
+    canonical: "https://malvinraqin.tech",
   }
 }
 
@@ -77,14 +78,21 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              "name": "Malvin M Raqin",
-              "url": "https://malvin-webporto.vercel.app",
+              "name": "Malvin Muhammad Raqin",
+              "url": "https://malvinraqin.tech",
               "jobTitle": "Full Stack Developer",
               "alumniOf": "University of Indonesia",
               "sameAs": [
                 "https://github.com/Malvin0902",
                 "https://www.linkedin.com/in/malvinmraqin/",
                 "https://www.instagram.com/mlvn.raqin/"
+              ],
+              "workExample": [
+                {
+                  "@type": "CreativeWork",
+                  "name": "Portfolio Website",
+                  "url": "https://malvinraqin.tech"
+                }
               ]
             })
           }}
