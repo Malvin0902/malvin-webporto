@@ -5,6 +5,7 @@ import { useEffect, useId, useRef, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { useOutsideClick } from "@/hooks/use-outside-click"
 import { X } from "lucide-react"
+import Image from 'next/image'
 
 export interface CardProps {
   title: string
@@ -97,7 +98,17 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
                   layoutId={`image-${active.title}-${id}`}
                   className="w-full h-72 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg bg-gray-100 dark:bg-[rgba(15,15,15,1)] flex items-center justify-center text-4xl relative overflow-hidden"
                 >
-                  {active.icon}
+                  {active.src ? (
+                    <Image
+                      src={active.src}
+                      alt={active.title}
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  ) : (
+                    active.icon
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/10 dark:to-black/20" />
                 </motion.div>
 

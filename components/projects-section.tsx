@@ -13,93 +13,195 @@ export default function ProjectsSection({ setActiveSection }: ProjectsSectionPro
 
   const projects: CardProps[] = [
     {
-      title: "Editorial Design System",
-      description: "A comprehensive design system for digital publications with a focus on typography and readability.",
-      tags: ["Design System", "Typography", "UI/UX"],
-      icon: "✓",
-      src: "/placeholder.svg?height=400&width=400",
-      ctaText: "",
-      ctaLink: "",
+      title: "Goyang Lidah Jogja",
+      description: "A culinary recommendation platform for Yogyakarta — think TripAdvisor, but for food. Built with Django and styled using Tailwind CSS.",
+      tags: ["Django", "Flutter", "Dart", "Python", "Tailwind CSS"],
+      src: "/goyang_lidah_jogja.png", 
+      ctaText: "View on GitHub",
+      ctaLink: "https://github.com/D-EZA-Kelompok5/goyang-lidah-jogja",
       content: () => (
         <>
           <p>
-            The Editorial Design System is a comprehensive framework designed to enhance digital publications through a
-            focus on typography and readability. This project addresses the challenges of creating consistent, visually
-            appealing, and highly readable digital content across multiple platforms.
+            GoyangLidahJogja adalah platform online yang dirancang untuk memudahkan Anda dalam menjelajahi, 
+            menemukan, dan menikmati ragam kuliner terbaik yang ada di Yogyakarta. Kami menyediakan informasi 
+            lengkap, rekomendasi akurat, dan ulasan jujur dari para pecinta kuliner dan komunitas lokal.
           </p>
-          <p>Key features of this design system include:</p>
+          <p className="mt-4">Fitur Utama:</p>
           <ul className="list-disc pl-5 space-y-2">
-            <li>A carefully curated typography scale optimized for digital reading</li>
-            <li>Responsive layout components that maintain readability across devices</li>
-            <li>Modular content blocks for flexible editorial layouts</li>
-            <li>Accessibility-focused design elements ensuring content is available to all users</li>
-            <li>Performance-optimized components for fast loading times</li>
+            <li>
+              <strong>Informasi Seputar Event Kuliner:</strong> Admin dapat mambuat announcement tentang 
+              informasi event kuliner yang bisa dilihat oleh customer dan pemilik resto.
+              <br/>
+              <span className="text-sm opacity-75">Dikerjakan oleh: Rakabima Ghaniendra Rusdianto</span>
+            </li>
+            <li>
+              <strong>GoyangNanti:</strong> Fitur untuk menyimpan daftar restoran yang ingin dikunjungi 
+              di masa depan (konsep seperti "wishlist").
+              <br/>
+              <span className="text-sm opacity-75">Dikerjakan oleh: Alyssa Layla Sasti</span>
+            </li>
+            <li>
+              <strong>Ulasan Pengguna:</strong> Pengguna dapat membaca ulasan jujur dari komunitas 
+              terkait pengalaman kuliner mereka.
+              <br/>
+              <span className="text-sm opacity-75">Dikerjakan oleh: Malvin Muhammad Raqin</span>
+            </li>
+            <li>
+              <strong>Filter Pencarian:</strong> Pengguna dapat memfilter hasil pencarian berdasarkan tags.
+              <br/>
+              <span className="text-sm opacity-75">Dikerjakan oleh: Bersama</span>
+            </li>
+            <li>
+              <strong>Kolom Announcement:</strong> Restaurant owner dapat memposting pengumuman khusus 
+              terkait restoran mereka.
+              <br/>
+              <span className="text-sm opacity-75">Dikerjakan oleh: Farhan Dwi Putra</span>
+            </li>
+            <li>
+              <strong>CRUD Menu:</strong> Restaurant owner dapat menambah, mengubah, dan menghapus menu 
+              pada restoran.
+              <br/>
+              <span className="text-sm opacity-75">Dikerjakan oleh: Vissuta Gunawan Lim</span>
+            </li>
           </ul>
-          <p>
-            The system was implemented using React and TypeScript, with a focus on component reusability and consistent
-            styling through a custom Tailwind configuration.
-          </p>
         </>
       ),
     },
     {
-      title: "Interactive Storytelling Platform",
-      description:
-        "A web platform that enables authors to create interactive, branching narratives with rich media elements.",
-      tags: ["Web Development", "Interactive", "React"],
-      icon: "⬒",
-      src: "/placeholder.svg?height=400&width=400",
-      ctaText: "",
-      ctaLink: "",
+      title: "Solemates",
+      description: "Software security project implementing comprehensive testing and OWASP Top 10 mitigations for an e-commerce platform.",
+      tags: ["Python", "JavaScript", "HTML", "Shell", "Security"],
+      src: "https://placehold.co/600x400?text=Solemates+Project",
+      ctaText: "View on GitLab",
+      ctaLink: "YOUR_GITHUB_LINK",
       content: () => (
         <>
           <p>
-            The Interactive Storytelling Platform is a web-based tool that empowers authors to create engaging,
-            non-linear narratives with branching storylines and multimedia elements. This project reimagines digital
-            storytelling by combining traditional narrative techniques with interactive web technologies.
+            Project mata kuliah Pengantar Keamanan Perangkat Lunak yang berfokus pada implementasi 
+            unit testing dan mitigasi OWASP Top 10. Menggunakan e-commerce sebagai studi kasus untuk 
+            menerapkan praktik keamanan modern dalam pengembangan web.
           </p>
-          <p>The platform features:</p>
+
+          <p className="mt-4">Unit Testing & Security Coverage:</p>
           <ul className="list-disc pl-5 space-y-2">
-            <li>An intuitive visual editor for creating branching narrative paths</li>
-            <li>Support for embedding images, audio, video, and interactive elements</li>
-            <li>Real-time preview of story flow and reader experience</li>
-            <li>Analytics dashboard to track reader engagement and choices</li>
-            <li>Responsive design ensuring stories work across all devices</li>
+            <li>
+              <strong>Test Coverage:</strong> 85% code coverage dengan 200+ unit tests
+              <br/>
+              <span className="text-sm opacity-75">Menggunakan PyTest dan Jest untuk backend dan frontend testing</span>
+            </li>
+            <li>
+              <strong>Security Testing:</strong> Automated security tests untuk vulnerability scanning
+              <br/>
+              <span className="text-sm opacity-75">Integration dengan OWASP ZAP untuk dynamic testing</span>
+            </li>
           </ul>
-          <p>
-            Built with Next.js and a custom state management system, the platform prioritizes performance and
-            accessibility while providing powerful creative tools for authors.
-          </p>
+
+          <p className="mt-4">OWASP Top 10 Mitigations:</p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>
+              <strong>Broken Access Control:</strong> Implementasi role-based access control dan session management
+            </li>
+            <li>
+              <strong>Cryptographic Failures:</strong> Proper password hashing dengan bcrypt dan data encryption
+            </li>
+            <li>
+              <strong>Injection:</strong> Input validation dan parameterized queries untuk mencegah SQL injection
+            </li>
+            <li>
+              <strong>Insecure Design:</strong> Secure by design principles dan threat modeling
+            </li>
+            <li>
+              <strong>Security Misconfiguration:</strong> Secure headers dan proper error handling
+            </li>
+            <li>
+              <strong>Vulnerable Components:</strong> Dependency scanning dan automated updates
+            </li>
+            <li>
+              <strong>Authentication Failures:</strong> Multi-factor authentication dan session management
+            </li>
+            <li>
+              <strong>Software & Data Integrity:</strong> Signature verification dan secure pipeline
+            </li>
+            <li>
+              <strong>Security Logging:</strong> Comprehensive audit trails dan monitoring
+            </li>
+            <li>
+              <strong>Server-Side Request Forgery:</strong> URL validation dan request filtering
+            </li>
+          </ul>
+
+          <p className="mt-4">Tech Implementation:</p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Python backend dengan Django security middleware</li>
+            <li>JavaScript frontend dengan security best practices</li>
+            <li>Shell scripts untuk automated security testing</li>
+            <li>CI/CD pipeline dengan security checks</li>
+          </ul>
         </>
       ),
     },
     {
-      title: "Minimalist E-commerce",
-      description: "A clean, typography-focused e-commerce experience for a boutique fashion brand.",
-      tags: ["E-commerce", "Minimalist", "Next.js"],
-      icon: "◉",
-      src: "/placeholder.svg?height=400&width=400",
-      ctaText: "",
-      ctaLink: "",
+      title: "Papikos",
+      description: "A comprehensive student housing platform built with Spring Boot for Advanced Programming course, featuring property listings and tenant management.",
+      tags: ["Spring Boot", "HTML", "CSS", "MySQL", "Java"],
+      src: "https://placehold.co/600x400?text=Papikos+Project",
+      ctaText: "View on GitHub",
+      ctaLink: "YOUR_GITHUB_LINK",
       content: () => (
         <>
           <p>
-            The Minimalist E-commerce project is a bespoke online shopping experience created for a boutique fashion
-            brand. The design emphasizes typography and whitespace to create an elegant, distraction-free shopping
-            environment that puts the focus on the products.
+            PapiKos adalah platform manajemen kos-kosan yang dikembangkan sebagai bagian dari mata kuliah 
+            Pemrograman Lanjut. Aplikasi ini memungkinkan pemilik kos untuk mengelola properti dan pencari 
+            kos untuk menemukan tempat tinggal yang sesuai dengan kebutuhan mereka.
           </p>
-          <p>Key aspects of this project include:</p>
+
+          <p className="mt-4">Fitur Utama:</p>
           <ul className="list-disc pl-5 space-y-2">
-            <li>Typography-driven design with careful attention to hierarchy and readability</li>
-            <li>Minimalist product displays with high-quality imagery</li>
-            <li>Streamlined checkout process optimized for conversion</li>
-            <li>Custom animations that enhance the browsing experience without distraction</li>
-            <li>Integration with headless CMS for content management and Stripe for payments</li>
+            <li>
+              <strong>Property Management:</strong> CRUD operasi untuk pemilik kos dalam mengelola listing properti
+              <br/>
+              <span className="text-sm opacity-75">Includes: foto upload, detail kamar, dan manajemen harga</span>
+            </li>
+            <li>
+              <strong>Booking System:</strong> Sistem pemesanan kamar kos dengan status tracking
+              <br/>
+              <span className="text-sm opacity-75">Features: booking confirmation, payment status</span>
+            </li>
+            <li>
+              <strong>Search & Filter:</strong> Pencarian kos berdasarkan lokasi, harga, dan fasilitas
+              <br/>
+              <span className="text-sm opacity-75">Advanced filtering dengan multiple parameters</span>
+            </li>
+            <li>
+              <strong>User Management:</strong> Multi-role system (Admin, Pemilik Kos, Pencari Kos)
+              <br/>
+              <span className="text-sm opacity-75">Role-based access control implementation</span>
+            </li>
           </ul>
-          <p>
-            The site was built using Next.js with server components for optimal performance and SEO, while maintaining
-            the minimalist aesthetic throughout the user journey.
-          </p>
+
+          <p className="mt-4">Technical Implementation:</p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>
+              <strong>Backend:</strong> Spring Boot with MVC architecture
+              <br/>
+              <span className="text-sm opacity-75">JPA/Hibernate for database operations</span>
+            </li>
+            <li>
+              <strong>Frontend:</strong> Responsive design dengan HTML5 dan CSS3
+              <br/>
+              <span className="text-sm opacity-75">Bootstrap untuk komponen UI</span>
+            </li>
+            <li>
+              <strong>Database:</strong> MySQL dengan relational data modeling
+              <br/>
+              <span className="text-sm opacity-75">Optimized queries dan indexing</span>
+            </li>
+            <li>
+              <strong>Security:</strong> Spring Security untuk authentication & authorization
+              <br/>
+              <span className="text-sm opacity-75">Session management dan secure password handling</span>
+            </li>
+          </ul>
         </>
       ),
     },
