@@ -5,22 +5,24 @@ import { streamText } from 'ai';
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  const { messages } = await req.json();
+  try {
+    const { messages } = await req.json();
 
-  // Ensure API key is available
-  const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
-  if (!apiKey) {
-    return new Response('Google API key not configured', { 
-      status: 500,
-      headers: { 'Content-Type': 'text/plain' }
-    });
-  }
-  const result = streamText({
-    model: google('gemini-2.5-flash'),
-    temperature: 0.7,
-    maxTokens: 1000,
-    topP: 0.9,
-    messages: [
+    // Ensure API key is available
+    const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+    if (!apiKey) {
+      return new Response('Google API key not configured', { 
+        status: 500,
+        headers: { 'Content-Type': 'text/plain' }
+      });
+    }
+
+    const result = streamText({
+      model: google('gemini-1.5-flash'),
+      temperature: 0.7,
+      maxTokens: 1000,
+      topP: 0.9,
+      messages: [
       {
         role: 'system',        content: `Halo! Aku Malvin AI - asisten digital Malvin Muhammad Raqin! 😊
 
@@ -78,6 +80,12 @@ export async function POST(req: Request) {
       ...messages,
     ],
   });
-
-  return result.toDataStreamResponse();
+    return result.toDataStreamResponse();
+  } catch (error) {
+    console.error('Chat API Error:', error);
+    return new Response(JSON.stringify({ error: 'Failed to process request' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
 }
