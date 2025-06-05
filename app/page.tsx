@@ -7,9 +7,8 @@ import IntroSection from "@/components/intro-section"
 import ProjectsSection from "@/components/projects-section"
 import SkillsSection from "@/components/skills-section"
 import AboutSection from "@/components/about-section"
+import ChatSection from "@/components/chat-section"
 import DotBackground from "@/components/ui/dot-background"
-import ChatButton from "@/components/chat-button"
-import Chat from "@/components/chat"
 
 // Dynamically import the Cursor component with no SSR
 const Cursor = dynamic(() => import("@/components/cursor"), { ssr: false })
@@ -17,7 +16,6 @@ const Cursor = dynamic(() => import("@/components/cursor"), { ssr: false })
 export default function Home() {
   const [activeSection, setActiveSection] = useState("intro")
   const [isLoading, setIsLoading] = useState(true)
-  const [isChatOpen, setIsChatOpen] = useState(false)
 
   // Add this function to handle section changes and scroll to top
   const handleSectionChange = (section: string) => {
@@ -58,15 +56,8 @@ export default function Home() {
         {activeSection === "projects" && <ProjectsSection setActiveSection={handleSectionChange} />}
         {activeSection === "skills" && <SkillsSection setActiveSection={handleSectionChange} />}
         {activeSection === "about" && <AboutSection setActiveSection={handleSectionChange} />}
+        {activeSection === "chat" && <ChatSection setActiveSection={handleSectionChange} />}
       </div>
-
-      {/* Chat Components */}
-      {!isLoading && (
-        <>
-          <ChatButton onClick={() => setIsChatOpen(true)} />
-          <Chat isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
-        </>
-      )}
     </DotBackground>
   )
 }
