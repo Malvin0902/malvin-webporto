@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 // Selected greetings that work well visually
 const greetings = [
-  { text: "hi", language: "English" },
+  { text: "hello", language: "English" },
   { text: "bonjour", language: "French" },
   { text: "ciao", language: "Italian" },
   { text: "olá", language: "Portuguese" },

@@ -16,14 +16,15 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [userResponse, setUserResponse] = useState("")
   const [isTyping, setIsTyping] = useState(false)
+  const [hasUserResponded, setHasUserResponded] = useState(false)
   const chatRef = useRef<HTMLDivElement>(null)
 
-  const initialMessages = ["hi.", "i'm a junior full stack developer", "would you like to know more about me?"]
-
+  const initialMessages = ["hi.", "i'm a junior software engineer", "would you like to know more about me?"]
   const responseOptions = [
-    { text: "show me your projects", action: () => setActiveSection("projects") },
-    { text: "what are your skills?", action: () => setActiveSection("skills") },
-    { text: "tell me about yourself", action: () => setActiveSection("about") },
+    { text: "🚀 show me your projects", action: () => setActiveSection("projects") },
+    { text: "🛠️ what are your skills?", action: () => setActiveSection("skills") },
+    { text: "👋 tell me about yourself", action: () => setActiveSection("about") },
+    { text: "💬 let's chat with AI", action: () => setActiveSection("chat") },
   ]
 
   useEffect(() => {
@@ -52,7 +53,6 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
       chatRef.current.scrollTop = chatRef.current.scrollHeight
     }
   }, [conversation, isTyping])
-
   const handleStartChat = () => {
     setShowChat(true)
   }
@@ -64,10 +64,11 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
     setConversation((prev) => [...prev, `you: ${userResponse}`])
     setUserResponse("")
     setIsTyping(true)
+    setHasUserResponded(true) // Mark that user has responded
 
     setTimeout(() => {
       setIsTyping(false)
-      setConversation((prev) => [...prev, "i appreciate your message. let me show you around my portfolio."])
+      setConversation((prev) => [...prev, "thanks for sharing! let me show you my projects."])
       setTimeout(() => {
         setActiveSection("projects")
       }, 2000)
@@ -98,12 +99,14 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
       className="min-h-[80vh] flex flex-col justify-center max-w-2xl mx-auto"
     >
       {!showChat ? (
-        <>
-          <motion.div variants={itemVariants} className="mb-16">
-            <h1 className="text-5xl mb-8 leading-tight">
+        <>          <motion.div variants={itemVariants} className="mb-16">
+            <h1 className="text-4xl sm:text-5xl mb-8 leading-tight">
               <Greeting />
               <br />
-              i'm a <span className="text-gradient">developer.</span>
+              i'm a <span className="text-gradient">
+                <span className="hidden sm:inline">software engineer.</span>
+                <span className="sm:hidden">SWE.</span>
+              </span>
             </h1>
           </motion.div>
 
@@ -129,7 +132,7 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
               transition={{ duration: 0.5 }}
               className={`${message.startsWith("you:") ? "text-right" : ""}`}
             >
-              <span className={`inline-block p-3 ${message.startsWith("you:") ? "bg-gray-200 dark:bg-gray-900" : ""}`}>{message}</span>
+              <span className={`inline-block p-3 ${message.startsWith("you:") ? "bg-[rgba(var(--foreground),0.1)] dark:bg-[rgba(var(--foreground),0.1)]" : ""}`}>{message}</span>
             </motion.div>
           ))}
 
@@ -137,49 +140,45 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="inline-block p-3">
               <span className="typing-effect"></span>
             </motion.div>
-          )}
-
-          {currentIndex === initialMessages.length && !isTyping && (
+          )}          {currentIndex === initialMessages.length && !isTyping && !hasUserResponded && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
               className="mt-8"
-            >
-              <div className="space-y-3">
-                {responseOptions.map((option, index) => (                  <motion.button
+              >              <div className="space-y-3">
+                {responseOptions.map((option, index) => (
+                  <button
                     key={index}
-                    className="block text-left p-3 w-full hover:bg-gray-200 dark:hover:bg-gray-900 transition-colors"
+                    className="block p-3 text-sm hover:opacity-80 transition-opacity duration-200"
                     onClick={option.action}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: 0.1 * index }}
-                    whileHover={{ x: 5, backgroundColor: "rgba(var(--foreground), 0.1)" }}
                   >
                     {option.text}
-                  </motion.button>
+                  </button>
                 ))}
               </div>
 
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
                 className="mt-6"
               >
-                <p className="text-gray-500 text-xs mb-2">or type your own response:</p>
-                <form onSubmit={handleCustomResponse} className="flex">
+                <p className="text-[rgba(var(--foreground),0.6)] text-xs mb-3">or tell me what's on your mind:</p>
+                <form onSubmit={handleCustomResponse} className="flex gap-2">
                   <input
                     type="text"
                     value={userResponse}
                     onChange={(e) => setUserResponse(e.target.value)}
-                    className="flex-1 bg-transparent border border-gray-800 p-2 text-sm focus:outline-none focus:border-gray-600"
+                    className="flex-1 bg-transparent border border-[rgba(var(--foreground),0.1)] px-3 py-2 text-sm rounded-md focus:outline-none focus:ring-1 focus:ring-[rgba(var(--foreground),0.3)] focus:border-[rgba(var(--foreground),0.3)] transition-colors"
                     placeholder="type your message..."
-                  />                  <motion.button
+                  />
+                  <motion.button
                     type="submit"
-                    className="bg-gray-200 dark:bg-gray-900 px-4 text-sm hover:bg-gray-300 dark:hover:bg-gray-800 transition-colors"
-                    whileHover={{ backgroundColor: "rgba(var(--foreground), 0.15)" }}
+                    className="bg-[rgba(var(--foreground),0.8)] text-[rgba(var(--background),1)] px-4 py-2 text-sm rounded-md hover:bg-[rgba(var(--foreground),0.9)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    whileHover={{ y: -1 }}
                     whileTap={{ scale: 0.98 }}
+                    disabled={!userResponse.trim()}
                   >
                     send
                   </motion.button>
