@@ -147,15 +147,14 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
               className="mt-8"
             >
               <div className="space-y-3">
-                {responseOptions.map((option, index) => (
-                  <motion.button
+                {responseOptions.map((option, index) => (                  <motion.button
                     key={index}
                     className="block text-left p-3 w-full hover:bg-gray-200 dark:hover:bg-gray-900 transition-colors"
                     onClick={option.action}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: 0.1 * index }}
-                    whileHover={{ x: 5 }}
+                    whileHover={{ x: 5, backgroundColor: "rgba(var(--foreground), 0.1)" }}
                   >
                     {option.text}
                   </motion.button>
@@ -176,11 +175,10 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
                     onChange={(e) => setUserResponse(e.target.value)}
                     className="flex-1 bg-transparent border border-gray-800 p-2 text-sm focus:outline-none focus:border-gray-600"
                     placeholder="type your message..."
-                  />
-                  <motion.button
+                  />                  <motion.button
                     type="submit"
                     className="bg-gray-200 dark:bg-gray-900 px-4 text-sm hover:bg-gray-300 dark:hover:bg-gray-800 transition-colors"
-                    whileHover={{ backgroundColor: "rgba(229, 231, 235, 1)" }}
+                    whileHover={{ backgroundColor: "rgba(var(--foreground), 0.15)" }}
                     whileTap={{ scale: 0.98 }}
                   >
                     send

@@ -32,12 +32,12 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
     setActiveSection(section)
     setMobileMenuOpen(false)
   }
-
   const navItems = [
     { id: "intro", label: "intro" },
     { id: "projects", label: "projects" },
     { id: "skills", label: "skills" },
     { id: "about", label: "about" },
+    { id: "chat", label: "chat" },
   ]
 
   return (
