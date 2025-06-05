@@ -235,17 +235,15 @@ export default function AboutSection({ setActiveSection }: AboutSectionProps) {
             </div>
           </div>
         </motion.div>
-      </motion.div>
-
-      <motion.button
+      </motion.div>      <motion.button
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.5, delay: 0.8 }}
         className="mt-12 text-sm opacity-70 hover:opacity-100 interactive-element"
-        onClick={() => setActiveSection("intro")}
-        whileHover={{ x: -5, transition: { duration: 0.2 } }}
+        onClick={() => setActiveSection("chat")}
+        whileHover={{ x: 5, transition: { duration: 0.2 } }}
       >
-        ←back to intro
+        →chat with <span className="text-gradient">malvin_ai</span>
       </motion.button>
     </motion.div>
   )
