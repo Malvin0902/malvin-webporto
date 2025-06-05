@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
 import { useChat } from 'ai/react'
 import { Send, Bot, User } from 'lucide-react'
@@ -11,8 +11,14 @@ interface ChatSectionProps {
 
 export default function ChatSection({ setActiveSection }: ChatSectionProps) {
   const ref = useRef(null)
+  const messagesEndRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat()
+  
+  // Auto-scroll to bottom when new messages are added
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages, isLoading])
   
   const suggestedQuestions = [
     "Apa saja proyek yang pernah dibuat Malvin?",
@@ -96,8 +102,7 @@ export default function ChatSection({ setActiveSection }: ChatSectionProps) {
                 </div>
               </motion.div>
             ))}
-            
-            {isLoading && (
+              {isLoading && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -115,6 +120,9 @@ export default function ChatSection({ setActiveSection }: ChatSectionProps) {
                 </div>
               </motion.div>
             )}
+            
+            {/* Invisible element to scroll to */}
+            <div ref={messagesEndRef} />
           </div>
 
           {/* Input Area */}
