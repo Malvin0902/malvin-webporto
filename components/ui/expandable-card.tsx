@@ -217,29 +217,6 @@ export default function ExpandableCard({ cards }: ExpandableCardProps) {
                     </motion.span>
                   ))}
               </div>
-
-              <motion.div 
-                className="mt-4 text-sm opacity-0 group-hover:opacity-70 transition-all duration-200 flex items-center"
-                initial={false}
-                animate={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-              >
-                <span>View details</span>
-                <span className="ml-1 inline-block transition-transform duration-200">
-                  →
-                </span>
-              </motion.div>
-
-              <motion.div
-                className="absolute bottom-4 right-4 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-              >
-                <span className="inline-block">
-                  Click me
-                </span>
-              </motion.div>
             </div>
           </motion.div>
         ))}

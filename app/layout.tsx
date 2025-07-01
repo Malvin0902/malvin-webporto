@@ -65,10 +65,9 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
-}>) {
-  return (
+}>) {  return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${jetbrainsMono.variable}`}>
+      <body className={`${jetbrainsMono.variable}`} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
