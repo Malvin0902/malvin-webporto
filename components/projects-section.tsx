@@ -73,7 +73,7 @@ export default function ProjectsSection({ setActiveSection }: ProjectsSectionPro
       tags: ["Python", "JavaScript", "HTML", "Shell", "Security"],
       src: "https://placehold.co/600x400?text=Solemates+Project",
       ctaText: "View on GitLab",
-      ctaLink: "YOUR_GITHUB_LINK",
+      ctaLink: "https://gitlab.com/malvinraqin/solemates-unit-testing-and-security-mitigations",
       content: () => (
         <>
           <p>
@@ -146,7 +146,7 @@ export default function ProjectsSection({ setActiveSection }: ProjectsSectionPro
       tags: ["Spring Boot", "HTML", "CSS", "MySQL", "Java"],
       src: "https://placehold.co/600x400?text=Papikos+Project",
       ctaText: "View on GitHub",
-      ctaLink: "YOUR_GITHUB_LINK",
+      ctaLink: "https://github.com/Adpro-A06/papikos.git",
       content: () => (
         <>
           <p>
