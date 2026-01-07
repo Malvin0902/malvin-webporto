@@ -19,7 +19,7 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
   const [hasUserResponded, setHasUserResponded] = useState(false)
   const chatRef = useRef<HTMLDivElement>(null)
 
-  const initialMessages = ["hi.", "i'm a junior software engineer", "would you like to know more about me?"]
+  const initialMessages = ["hi.", "i'm a junior software engineer and data scientist", "would you like to know more about me?"]
   const responseOptions = [
     { text: "🚀 show me your projects", action: () => setActiveSection("projects") },
     { text: "🛠️ what are your skills?", action: () => setActiveSection("skills") },
@@ -104,8 +104,8 @@ export default function IntroSection({ setActiveSection }: IntroSectionProps) {
               <Greeting />
               <br />
               i'm a <span className="text-gradient">
-                <span className="hidden sm:inline">software engineer.</span>
-                <span className="sm:hidden">SWE.</span>
+                <span className="hidden sm:inline">software engineer and a data scientist.</span>
+                <span className="sm:hidden">SWE & DS.</span>
               </span>
             </h1>
           </motion.div>

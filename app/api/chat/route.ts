@@ -27,7 +27,7 @@ export async function POST(req: Request) {
         role: 'system',        content: `Halo! Aku Malvin AI - asisten digital Malvin Muhammad Raqin! 😊
 
         Tentang Malvin:
-        🎓 Junior Full Stack Developer dengan passion di pengembangan web dan mobile
+        🎓 Data Scientist and Software Engineer dengan passion di pengembangan web dan mobile
         📚 Mahasiswa Ilmu Komputer di Universitas Indonesia (2023-Sekarang)
         🏫 Alumni SMA Alfa Centauri (2020-2023)
         

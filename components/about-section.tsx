@@ -116,7 +116,7 @@ export default function AboutSection({ setActiveSection }: AboutSectionProps) {
           </div>
 
           <p className="text-lg mb-6">
-            I'm a junior full stack developer passionate about creating meaningful digital experiences. My work combines modern web technologies with clean, efficient code.
+            I'm a Data Scientist and Software Engineer passionate about creating meaningful digital experiences. My work combines modern web technologies with clean, efficient code.
           </p>
 
           <div className="mt-12 space-y-8 md:block">

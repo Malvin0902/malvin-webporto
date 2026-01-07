@@ -10,8 +10,8 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Malvin Muhammad Raqin | Junior Full Stack Developer",
-  description: "Portfolio of Malvin Muhammad Raqin, a Junior Full Stack Developer. Explore my projects, skills, and experiences in web development and software engineering.",
+  title: "Malvin Muhammad Raqin | Data Scientist and Software Engineer",
+  description: "Portfolio of Malvin Muhammad Raqin, a Data Scientist and Software Engineer. Explore my projects, skills, and experiences in data science and software engineering.",
   keywords: [
     "Malvin Muhammad Raqin",
     "Malvin Muhammad",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "developer portfolio",
     "web developer",
     "software engineer",
-    "full stack developer",
+    "data scientist",
     "react developer",
     "typescript",
     "junior developer",
@@ -32,14 +32,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://malvinraqin.tech",
-    title: "Malvin Muhammad Raqin | Junior Full Stack Developer",
-    description: "Portfolio of Malvin Muhammad Raqin, a Junior Full Stack Developer. Explore my projects, skills, and experiences in web development and software engineering.",
+    title: "Malvin Muhammad Raqin | Data Scientist and Software Engineer",
+    description: "Portfolio of Malvin Muhammad Raqin, a Data Scientist and Software Engineer. Explore my projects, skills, and experiences in data science and software engineering.",
     siteName: "Malvin Muhammad Raqin's Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Malvin Muhammad Raqin | Junior Full Stack Developer",
-    description: "Portfolio of Malvin Muhammad Raqin, a Junior Full Stack Developer. Explore my projects, skills, and experiences in web development and software engineering.",
+    title: "Malvin Muhammad Raqin | Data Scientist and Software Engineer",
+    description: "Portfolio of Malvin Muhammad Raqin, a Data Scientist and Software Engineer. Explore my projects, skills, and experiences in data science and software engineering.",
     creator: "@raqinnnn",
   },
   robots: {
@@ -79,7 +79,7 @@ export default function RootLayout({
               "@type": "Person",
               "name": "Malvin Muhammad Raqin",
               "url": "https://malvinraqin.tech",
-              "jobTitle": "Full Stack Developer",
+              "jobTitle": "Data Scientist and Software Engineer",
               "alumniOf": "University of Indonesia",
               "sameAs": [
                 "https://github.com/Malvin0902",
